@@ -20,11 +20,12 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
-let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
+let g:which_key_map['r'] = [ ':RnvimrToggle'                    , 'ranger' ]
 
 " Buffers
 let g:which_key_map.b = {
     \ 'name' : '+buffers',
+    \ 'b' : [':Buffers' , 'list buffers'],
     \ }
 
 " Window keys
@@ -50,11 +51,16 @@ let g:which_key_map.a = {
 " File keys
 let g:which_key_map.f = {
     \ 'name' : '+file',
-    \ 's' : [':w!' , 'save file'],
-    \ 'v' : [':e ~/.config/nvim/init.vim' , 'vim config'],
-    \ 'k' : [':e ~/.config/nvim/keys/which-key.vim' , 'which key config'],
-    \ 'f' : [':e ~/.config/fish/config.fish' , 'fish config'],
-    \ 'a' : [':e ~/.config/alacritty/alacritty.yml' , 'alacritty config'],
+    \ 's' : [':w' , 'save file'],
+    \ 'f' : [':Files' , 'find file'],
+    \ 'r' : [':Rg' , 'ripgrep'],
+    \ 'c' : {
+        \ 'name' : '+configs',
+        \ 'v' : [':e ~/.config/nvim/init.vim' , 'vim config'],
+        \ 'k' : [':e ~/.config/nvim/keys/which-key.vim' , 'which key config'],
+        \ 'f' : [':e ~/.config/fish/config.fish' , 'fish config'],
+        \ 'a' : [':e ~/.config/alacritty/alacritty.yml' , 'alacritty config'],
+        \ },
     \ }
 
 " Quit
