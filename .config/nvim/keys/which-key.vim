@@ -63,12 +63,17 @@ let g:which_key_map.f = {
     \ 'f' : [':Files' , 'find file'],
     \ 'r' : [':Rg' , 'ripgrep'],
     \ 'c' : {
-        \ 'name' : '+configs',
-        \ 'v' : [':e ~/.config/nvim/init.vim' , 'vim config'],
-        \ 'k' : [':e ~/.config/nvim/keys/which-key.vim' , 'which key config'],
-        \ 'f' : [':e ~/.config/fish/config.fish' , 'fish config'],
-        \ 'a' : [':e ~/.config/alacritty/alacritty.yml' , 'alacritty config'],
-        \ },
+      \ 'name' : '+configs',
+      \ 'v' : {
+        \ 'name' : '+vim',
+          \ 'k' : [':e ~/.config/nvim/keys/which-key.vim' , 'which-key.vim'],
+          \ 'c' : [':e ~/.config/nvim/coc-settings.json' , 'coc-settings.json'],
+          \ 'n' : [':e ~/.config/nvim/plug-config/coc.vim' , 'coc.vim'],
+          \ 'p' : [':e ~/.config/nvim/plug-config/plugins.vim' , 'plugins.vim'],
+          \ },
+      \ 'f' : [':e ~/.config/fish/config.fish' , 'fish config'],
+      \ 'a' : [':e ~/.config/alacritty/alacritty.yml' , 'alacritty config'],
+      \ },
     \ }
 
 " Quit
