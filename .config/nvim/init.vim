@@ -1,4 +1,4 @@
-
+source $HOME/.config/nvim/keys/which-key.vim
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -6,43 +6,38 @@ filetype off                  " required
 " => Vundle For Managing Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 "{{ The Basics }}
-Plugin 'gmarik/Vundle.vim'                           " Vundle
-Plugin 'itchyny/lightline.vim'                       " Lightline statusbar
-Plugin 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
-Plugin 'frazrepo/vim-rainbow'
-
+    Plug 'gmarik/Vundle.vim'                           " Vundle
+    Plug 'itchyny/lightline.vim'                       " Lightline statusbar
+    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
+    Plug 'frazrepo/vim-rainbow'
 "{{ File management }}
-Plugin 'vifm/vifm.vim'                               " Vifm
-Plugin 'scrooloose/nerdtree'                         " Nerdtree
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'     " Highlighting Nerdtree
-Plugin 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
-
+    Plug 'vifm/vifm.vim'                               " Vifm
+    Plug 'scrooloose/nerdtree'                         " Nerdtree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " Highlighting Nerdtree
+    Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
 "{{ Productivity }}
-Plugin 'vimwiki/vimwiki'                             " VimWiki 
-Plugin 'jreybert/vimagit'                            " Magit-like plugin for vim
-
+    Plug 'mattn/emmet-vim'                             " Emmet
+    Plug 'jlanzarotta/bufexplorer'                     " Buffers
+    Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+    Plug 'turbio/bracey.vim'                           " Live Server
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}    " Code Completion
+    Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
 "{{ Tim Pope Plugins }}
-Plugin 'tpope/vim-surround'                          " Change surrounding marks
-
+    Plug 'tpope/vim-surround'                          " Change surrounding marks
 "{{ Syntax Highlighting and Colors }}
-Plugin 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
-Plugin 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
-Plugin 'vim-python/python-syntax'                    " Python highlighting
-Plugin 'ap/vim-css-color'                            " Color previews for CSS
-
+    Plug 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
+    Plug 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
+    Plug 'vim-python/python-syntax'                    " Python highlighting
+    Plug 'ap/vim-css-color'                            " Color previews for CSS
 "{{ Junegunn Choi Plugins }}
-Plugin 'junegunn/goyo.vim'                           " Distraction-free viewing
-Plugin 'junegunn/limelight.vim'                      " Hyperfocus on a range
-Plugin 'junegunn/vim-emoji'                          " Vim needs emojis!
+    Plug 'junegunn/goyo.vim'                           " Distraction-free viewing
+    Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
+    Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -92,26 +87,90 @@ set laststatus=2
 " Uncomment to prevent non-normal modes showing in powerline and below powerline.
 set noshowmode
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set expandtab                   " Use spaces instead of tabs.
-set smarttab                    " Be smart using tabs ;)
-set shiftwidth=4                " One tab == four spaces.
-set tabstop=4                   " One tab == four spaces.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Emmet
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<C-E>'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Uncomment to autostart the NERDTree
-" autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '►'
-let g:NERDTreeDirArrowCollapsible = '▼'
-let NERDTreeShowLineNumbers=1
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize=38
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Coc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:coc_global_extensions = [
+  \ 'coc-css', 
+  \ 'coc-emmet',
+  \ 'coc-eslint', 
+  \ 'coc-html', 
+  \ 'coc-html-css-support', 
+  \ 'coc-json', 
+  \ 'coc-pairs',
+  \ 'coc-prettier', 
+  \ 'coc-sh', 
+  \ 'coc-tsserver',
+  \ ]
+
+" change color for pmenu
+highlight Pmenu ctermbg=8 ctermfg=15
+
+" from readme
+" if hidden is not set, TextEdit might fail.
+set hidden " Some servers have issues with backup files, see #649 set nobackup set nowritebackup " Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Theming
@@ -164,32 +223,25 @@ highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none
 " highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vifm
+" => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
+set expandtab                   " Use spaces instead of tabs.
+set smarttab                    " Be smart using tabs ;)
+set shiftwidth=4                " One tab == four spaces.
+set tabstop=4                   " One tab == four spaces.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VimWiki
+" => NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-Instant-Markdown
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:instant_markdown_autostart = 0         " Turns off auto preview
-let g:instant_markdown_browser = "surf"      " Uses surf for preview
-map <Leader>md :InstantMarkdownPreview<CR>   " Previews .md file
-map <Leader>ms :InstantMarkdownStop<CR>      " Kills the preview
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Open terminal inside Vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>tt :vnew term://fish<CR>
+" Uncomment to autostart the NERDTree
+" autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '►'
+let g:NERDTreeDirArrowCollapsible = '▼'
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize=28
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mouse Scrolling
@@ -201,46 +253,4 @@ set mouse=a
 " => Fix Sizing Bug With Alacritty Terminal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Splits and Tabbed Files
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set splitbelow splitright
-
-" Remap splits navigation to just CTRL + hjkl
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Make adjusing split sizes a bit more friendly
-noremap <silent> <C-Left> :vertical resize +3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Up> :resize +3<CR>
-noremap <silent> <C-Down> :resize -3<CR>
-
-" Change 2 split windows from vert to horiz or horiz to vert
-map <Leader>th <C-w>t<C-w>H
-map <Leader>tk <C-w>t<C-w>K
-
-" Removes pipes | that act as seperators on splits
-set fillchars+=vert:\ 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Other Stuff
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:python_highlight_all = 1
-
-au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
-au BufEnter *.org            call org#SetOrgFileType()
-
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-set guifont=SauceCodePro\ Nerd\ Font:h15
-"set guifont=Mononoki\ Nerd\ Font:h15
-"set guifont=JetBrains\ Mono:h15
-
-"let g:neovide_transparency=0.95
 
