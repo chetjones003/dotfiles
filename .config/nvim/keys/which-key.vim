@@ -30,6 +30,12 @@ let g:which_key_map.b = {
     \ 'p' : [':bp' , 'previous buffer'],
     \ }
 
+" Coc
+let g:which_key_map.c = {
+    \ 'name' : '+coc',
+    \ 'e' : [':CocCommand explorer' , 'explorer'],
+    \ }
+
 " Window keys
 let g:which_key_map.w = {
     \ 'name' : '+window',
