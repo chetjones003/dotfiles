@@ -11,8 +11,8 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
-set EDITOR "usr/bin/nvim"                 # $EDITOR use Emacs in terminal
-set VISUAL "usr/bin/nvim"              # $VISUAL use Emacs in GUI mode
+set EDITOR "nvim"                 # $EDITOR use Emacs in terminal
+set VISUAL "neovide"              # $VISUAL use Emacs in GUI mode
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 set fish_color_normal brcyan
