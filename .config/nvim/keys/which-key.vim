@@ -19,7 +19,12 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
-let g:which_key_map['r'] = [ ':RnvimrToggle'                    , 'ranger' ]
+let g:which_key_map['r'] = [ ':RnvimrToggle' , 'ranger' ]
+let g:which_key_map['/'] = [ ':Startify', 'Home Buffer' ]
+
+let g:which_key_map.M = 'which_key_ignore'
+
+map <C-n> :CocCommand explorer<CR>
 
 " Buffers
 let g:which_key_map.b = {
@@ -28,13 +33,25 @@ let g:which_key_map.b = {
     \ 'd' : [':bd' , 'close buffer'],
     \ 'n' : [':bn' , 'next buffer'],
     \ 'p' : [':bp' , 'previous buffer'],
+    \ 'f' : [':bf' , 'first buffer'],
+    \ 'l' : [':bl' , 'last buffer'],
     \ }
 
 " Coc
 let g:which_key_map.c = {
     \ 'name' : '+coc',
-    \ 'e' : [':CocCommand explorer' , 'explorer'],
     \ }
+
+" Git
+let g:which_key_map.g = {
+    \ 'name' : '+git',
+    \ 's' : [':Magit' , 'status'],
+    \ 'l' : [':Git log' , 'log'],
+    \ 'h' : [':Git help' , 'help'],
+    \ }
+
+map <leader>gc :Git checkout <Space>
+map <leader>gp :Git push <Space>
 
 " Window keys
 let g:which_key_map.w = {
@@ -75,6 +92,22 @@ let g:which_key_map.f = {
       \ 'a' : [':e ~/.config/alacritty/alacritty.yml' , 'alacritty config'],
       \ },
     \ }
+
+" Float term
+let g:which_key_map.t = {
+      \ 'name' : '+terminal' ,
+      \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
+      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
+      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
+      \ 'n' : [':FloatermNew node'                              , 'node'],
+      \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
+      \ 'p' : [':FloatermNew python'                            , 'python'],
+      \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
+      \ 't' : [':FloatermToggle'                                , 'toggle'],
+      \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
+      \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
+      \ }
 
 " Quit
 let g:which_key_map.q = {
