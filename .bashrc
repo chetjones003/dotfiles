@@ -226,6 +226,3 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init bash)"
 
-# FM6000 Neofetch replacement
-./fm6000 -as -c green
-
