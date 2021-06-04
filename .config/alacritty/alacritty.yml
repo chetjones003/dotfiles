@@ -41,7 +41,7 @@ font:
 
     style: Bold Italic
 
-  size: 11.0
+  size: 12.0
 
   offset:
     x: 0
@@ -50,7 +50,7 @@ font:
 draw_bold_text_with_bright_colors: false
 
 import:
-    - /home/chetj/.config/alacritty/snazzy.yml
+    - /home/chetj/.config/alacritty/onedark.yml
 
-background_opacity: 0.95
+background_opacity: 1.0
 
