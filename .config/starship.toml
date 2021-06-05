@@ -1,0 +1,54 @@
+# ~/.config/starship.toml
+
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Disables the line_break module, making the prompt a single line.
+[line_break]
+disabled = true
+
+# Replace the "❯" symbol in the prompt
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
+
+# Disable the AWS module; it's noisy
+[aws]
+disabled = true
+
+# How to make this do something?
+#[git_commit]
+
+#commit_hash_length = 4
+[directory]
+style = "bold cyan"
+truncate_to_repo = false
+truncation_length = 5
+
+# Language configs might be useful when they're less wordy someday.
+
+[ruby]
+disabled = true
+symbol = " "
+
+[nodejs]
+disabled = true
+symbol = ""
+style = "bold yellow"
+
+[python]
+disabled = true
+symbol = ""
+style = "bold green"
+
+[golang]
+disabled = true
+symbol = "ﳑ"
+
+[git_branch]
+symbol = ""
+style = "bold green"
