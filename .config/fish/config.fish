@@ -41,13 +41,13 @@ end
 ### ALIASES ###
 
 # configs
-alias bashconfig="vim ~/.bashrc"
-alias zshconfig="vim ~/.zshrc"
-alias fishconfig="vim ~/.config/fish/config.fish"
-alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
-alias vimconfig="vim ~/.config/nvim/init.vim"
-alias whichkeyconfig="vim ~/.config/nvim/keys/which-key.vim"
-alias qtileconfig="vim ~/.config/qtile/config.py"
+alias bashconfig="emacs ~/.bashrc"
+alias zshconfig="emacs ~/.zshrc"
+alias fishconfig="emacs ~/.config/fish/config.fish"
+alias alacrittyconfig="emacs ~/.config/alacritty/alacritty.yml"
+alias vimconfig="emacs ~/.config/nvim/init.vim"
+alias whichkeyconfig="emacs ~/.config/nvim/keys/which-key.vim"
+alias qtileconfig="emacs ~/.config/qtile/config.py"
 
 # root privileges
 alias doas="doas --"
