@@ -74,6 +74,7 @@ alias l.='exa -a | egrep "^\."'
 # pacman and yay
 alias pacinstall='sudo pacman -S'
 alias pacsearch='sudo pacman -Ss'
+alias updateall="sudo pacman -Syyu & yay -Sua --noconfirm & yay -Syu --noconfirm & paru -Sua --noconfirm & paru -Syu --noconfirm"
 alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
