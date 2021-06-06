@@ -52,4 +52,4 @@ draw_bold_text_with_bright_colors: false
 import:
   - /home/chetj/.config/alacritty/onedark.yml
 
-background_opacity: 1.0
+background_opacity: 0.85
