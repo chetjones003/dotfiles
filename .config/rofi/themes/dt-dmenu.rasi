@@ -6,12 +6,12 @@
  */
 
 * {
-    background-color:           #282c34;
-    border-color:               #282c34;
+    background-color:           #282a36;
+    border-color:               #282a36;
     text-color:                 #bbc2cf;
     height:                     22px;
-    font:                       "Source Code Pro";
-    prompt-font:                "Ubuntu Bold 9";
+    font:                       "Source Code Pro 12";
+    prompt-font:                "Source Code Pro 12";
     prompt-background:          #51afef;
     prompt-foreground:          #282c34;
     prompt-padding:             2px;

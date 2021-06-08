@@ -6,15 +6,15 @@
  */
 
 * {
-    background-color:            #282c34;
-    border-color:                #282c34;
+    background-color:            #282a36;
+    border-color:                #282a36;
     text-color:                  #bbc2cf;
-    font:                        "Source Code Pro Bold 14";
-    prompt-font:                 "Source Code Pro Bold 14";
+    font:                        "Source Code Pro 12";
+    prompt-font:                 "Source Code Pro 12";
     prompt-background:           #51afef;
     prompt-foreground:           #282c34;
     prompt-padding:              4px;
-    alternate-normal-background: #1c1f24;
+    alternate-normal-background: #282a36;
     alternate-normal-foreground: @text-color;
     selected-normal-background:  #ae3f3e;
     selected-normal-foreground:  #ffffff;
