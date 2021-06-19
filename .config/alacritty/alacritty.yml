@@ -50,6 +50,6 @@ font:
 draw_bold_text_with_bright_colors: false
 
 import:
-  - /home/chetj/.config/alacritty/onedark.yml
+  - /home/chetj/.config/alacritty/spacemacs.yml
 
-background_opacity: 0.95
+background_opacity: 1.0
