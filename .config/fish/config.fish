@@ -1,4 +1,4 @@
-neofetch
+pfetch
 ### ADDING TO THE PATH
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
@@ -41,21 +41,18 @@ end
 ### ALIASES ###
 
 # configs
-alias bashconfig="emacs ~/.bashrc"
-alias zshconfig="emacs ~/.zshrc"
-alias fishconfig="emacs ~/.config/fish/config.fish"
-alias alacrittyconfig="emacs ~/.config/alacritty/alacritty.yml"
-alias vimconfig="emacs ~/.config/nvim/init.vim"
-alias whichkeyconfig="emacs ~/.config/nvim/keys/which-key.vim"
-alias qtileconfig="emacs ~/.config/qtile/config.py"
+alias bashconfig="emacst ~/.bashrc"
+alias zshconfig="emacst ~/.zshrc"
+alias fishconfig="emacst ~/.config/fish/config.fish"
+alias alacrittyconfig="emacst ~/.config/alacritty/alacritty.yml"
+alias qtileconfig="emacst ~/.config/qtile/config.py"
 
 # root privileges
 alias doas="doas --"
 
 # vim and emacs
 alias vim="nvim"
-alias emacs="emacsclient -t -a ''"
-alias emacsgui="emacsclient -c -a emacs"
+alias emacst="emacsclient -t -a ''"
 alias doomsync="~/.emacs.d/bin/doom sync"
 alias doomdoctor="~/.emacs.d/bin/doom doctor"
 alias doomupgrade="~/.emacs.d/bin/doom upgrade"
