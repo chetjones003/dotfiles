@@ -1,4 +1,4 @@
-pfetch
+./fm6000 -as -c green
 ### ADDING TO THE PATH
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
@@ -41,11 +41,11 @@ end
 ### ALIASES ###
 
 # configs
-alias bashconfig="emacst ~/.bashrc"
-alias zshconfig="emacst ~/.zshrc"
-alias fishconfig="emacst ~/.config/fish/config.fish"
-alias alacrittyconfig="emacst ~/.config/alacritty/alacritty.yml"
-alias qtileconfig="emacst ~/.config/qtile/config.py"
+alias bashconfig="vim ~/.bashrc"
+alias zshconfig="vim ~/.zshrc"
+alias fishconfig="vim ~/.config/fish/config.fish"
+alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
+alias qtileconfig="vim ~/.config/qtile/config.py"
 
 # root privileges
 alias doas="doas --"
