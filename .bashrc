@@ -1,4 +1,8 @@
 ./fm6000 -as -c green
+
+# Switch ctrl and caps
+xmodmap .Xmodmap
+
 ### EXPORT
 export TERM="xterm-256color"                      # getting proper colors
 export HISTCONTROL=ignoredups:erasedups           # no duplicate entries
@@ -101,7 +105,8 @@ alias zshconfig="vim ~/.zshrc"
 alias fishconfig="vim ~/.config/alacritty/alacritty.yml"
 alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
 alias vimconfig="vim ~/.config/nvim/init.vim"
-alias qtileconfig="vim ~/.config/qtile/config.py"
+alias xmonadconfig="vim ~/.xmonad/README.org"
+alias xmobarconfig="vim ~/.config/xmobar/xmobarrc0"
 
 # root privileges
 alias doas="doas --"

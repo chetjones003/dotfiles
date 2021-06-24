@@ -45,7 +45,8 @@ alias bashconfig="vim ~/.bashrc"
 alias zshconfig="vim ~/.zshrc"
 alias fishconfig="vim ~/.config/fish/config.fish"
 alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
-alias qtileconfig="vim ~/.config/qtile/config.py"
+alias xmonadconfig="vim ~/.xmonad/README.org"
+alias xmobarconfig="vim ~/.config/xmobar/xmobarrc0"
 
 # root privileges
 alias doas="doas --"
