@@ -9,7 +9,7 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
 set EDITOR "emacsclient -t -a ''"                 # $EDITOR use Emacs in terminal
-set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mode
+set VISUAL "emacsclient -c -n -a emacs"              # $VISUAL use Emacs in GUI mode
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 set fish_color_normal brcyan
@@ -41,18 +41,19 @@ end
 ### ALIASES ###
 
 # configs
-alias bashconfig="vim ~/.bashrc"
-alias zshconfig="vim ~/.zshrc"
-alias fishconfig="vim ~/.config/fish/config.fish"
-alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
-alias xmonadconfig="vim ~/.xmonad/README.org"
-alias xmobarconfig="vim ~/.config/xmobar/xmobarrc0"
+alias bashconfig="emacst ~/.bashrc"
+alias zshconfig="emacst ~/.zshrc"
+alias fishconfig="emacst ~/.config/fish/config.fish"
+alias alacrittyconfig="emacst ~/.config/alacritty/alacritty.yml"
+alias xmonadconfig="emacs ~/.xmonad/README.org"
+alias xmobarconfig="emacs ~/.config/xmobar/xmobarrc0"
 
 # root privileges
 alias doas="doas --"
 
 # vim and emacs
 alias vim="nvim"
+alias emacs="emacsclient -c -n -a emacs"
 alias emacst="emacsclient -t -a ''"
 alias doomsync="~/.emacs.d/bin/doom sync"
 alias doomdoctor="~/.emacs.d/bin/doom doctor"

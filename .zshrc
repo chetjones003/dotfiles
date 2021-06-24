@@ -98,7 +98,7 @@ source $ZSH/oh-my-zsh.sh
 export HISTCONTROL=ignoredups:erasedups           # no duplicate entries
 export ALTERNATE_EDITOR=""                        # setting for emacsclient
 export EDITOR="emacsclient -t -a ''"              # $EDITOR use Emacs in terminal
-export VISUAL="emacsclient -c -a emacs"           # $VISUAL use Emacs in GUI mode
+export VISUAL="emacsclient -c -n -a emacs"           # $VISUAL use Emacs in GUI mode
 
 ### SET MANPAGER
 ### Uncomment only one of these!
@@ -128,19 +128,19 @@ fi
 ### ALIASES ###
 
 # configs
-alias bashconfig="vim ~/.bashrc"
-alias zshconfig="vim ~/.zshrc"
-alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
-alias vimconfig="vim ~/.config/nvim/init.vim"
-alias xmonadconfig="vim ~/.xmonad/README.org"
-alias xmobarconfig="vim ~/.config/xmobar/xmobarrc0"
+alias bashconfig="emacst ~/.bashrc"
+alias zshconfig="emacst ~/.zshrc"
+alias alacrittyconfig="emacst ~/.config/alacritty/alacritty.yml"
+alias vimconfig="emacst ~/.config/nvim/init.vim"
+alias xmonadconfig="emacs ~/.xmonad/README.org"
+alias xmobarconfig="emacs ~/.config/xmobar/xmobarrc0"
 
 # root privileges
 alias doas="doas --"
 
 # vim and emacs
 alias vim="nvim"
-alias em="/usr/bin/emacs -nw"
+alias emacst="emacsclient -t -a ''"
 alias emacs="emacsclient -c -a 'emacs'"
 alias doomsync="~/.emacs.d/bin/doom sync"
 alias doomdoctor="~/.emacs.d/bin/doom doctor"
