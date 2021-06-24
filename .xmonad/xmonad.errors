@@ -1,0 +1,26 @@
+
+xmonad.hs:255:38: error:
+    Variable not in scope: myScratchPads :: NamedScratchpads
+    |
+255 |      ] <+> namedScratchpadManageHook myScratchPads
+    |                                      ^^^^^^^^^^^^^
+
+xmonad.hs:295:41: error: Variable not in scope: nonNSP :: WSType
+    |
+295 |         , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next ws
+    |                                         ^^^^^^
+
+xmonad.hs:295:63: error: Variable not in scope: nonNSP :: WSType
+    |
+295 |         , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next ws
+    |                                                               ^^^^^^
+
+xmonad.hs:296:46: error: Variable not in scope: nonNSP :: WSType
+    |
+296 |         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
+    |                                              ^^^^^^
+
+xmonad.hs:296:68: error: Variable not in scope: nonNSP :: WSType
+    |
+296 |         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
+    |                                                                    ^^^^^^
