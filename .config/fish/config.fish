@@ -41,10 +41,10 @@ end
 ### ALIASES ###
 
 # configs
-alias bashconfig="emacst ~/.bashrc"
-alias zshconfig="emacst ~/.zshrc"
-alias fishconfig="emacst ~/.config/fish/config.fish"
-alias alacrittyconfig="emacst ~/.config/alacritty/alacritty.yml"
+alias bashconfig="em ~/.bashrc"
+alias zshconfig="em ~/.zshrc"
+alias fishconfig="em ~/.config/fish/config.fish"
+alias alacrittyconfig="em ~/.config/alacritty/alacritty.yml"
 alias xmonadconfig="emacs ~/.xmonad/README.org"
 alias xmobarconfig="emacs ~/.config/xmobar/xmobarrc0"
 
@@ -54,7 +54,7 @@ alias doas="doas --"
 # vim and emacs
 alias vim="nvim"
 alias emacs="emacsclient -c -n -a emacs"
-alias emacst="emacsclient -t -a ''"
+alias em="emacsclient -t -a ''"
 alias doomsync="~/.emacs.d/bin/doom sync"
 alias doomdoctor="~/.emacs.d/bin/doom doctor"
 alias doomupgrade="~/.emacs.d/bin/doom upgrade"
