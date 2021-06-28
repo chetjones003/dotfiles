@@ -62,7 +62,6 @@ import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
    -- Utilities
 import XMonad.Util.Dmenu
 import XMonad.Util.EZConfig (additionalKeysP)
-import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 
@@ -252,7 +251,7 @@ myManageHook = composeAll
      , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
      , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
      , isFullscreen -->  doFullFloat
-     ] <+> namedScratchpadManageHook myScratchPads
+     ]
 
 myKeys :: [(String, X ())]
 myKeys =
@@ -275,6 +274,7 @@ myKeys =
         , ("M-p k", spawn "dm-kill")      -- kill processes
         , ("M-p m", spawn "dm-man")       -- manpages
         , ("M-p o", spawn "dm-bookman")   -- qutebrowser bookmarks/history
+        , ("M-p w", spawn "dm-wifi")      -- select wifi
         , ("M-p p", spawn "passmenu")     -- passmenu
         , ("M-p q", spawn "dm-logout")    -- logout menu
         , ("M-p r", spawn "dm-reddit")    -- reddio (a reddit viewer)
@@ -292,8 +292,6 @@ myKeys =
     -- Workspaces
         , ("M-.", nextScreen)  -- Switch focus to next monitor
         , ("M-,", prevScreen)  -- Switch focus to prev monitor
-        , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next ws
-        , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
 
     -- Floating windows
         , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
@@ -358,11 +356,13 @@ myKeys =
         , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
         , ("<XF86Eject>", spawn "toggleeject")
+        , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 5")
+        , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")
         ]
 
 main :: IO ()
 main = do
-    xmproc0 <- spawnPipe "xmobar -x 0 /home/chetj/.config/xmobar/xmobarrc0"
+    xmproc0 <- spawnPipe "xmobar -x 0 /home/chetj/.config/xmobar/xmobar.hs"
     xmonad $ ewmh def
         { manageHook         = myManageHook <+> manageDocks
         , handleEventHook    = docksEventHook
@@ -374,14 +374,14 @@ main = do
         , borderWidth        = myBorderWidth
         , normalBorderColor  = myNormColor
         , focusedBorderColor = myFocusColor
-        , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
+        , logHook = dynamicLogWithPP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
               { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
               , ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"           -- Current workspace
               , ppVisible = xmobarColor "#98be65" "" . clickable              -- Visible but not current workspace
               , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" "" . clickable -- Hidden workspaces
               , ppHiddenNoWindows = xmobarColor "#c792ea" ""  . clickable     -- Hidden workspaces (no windows)
-              , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
+              , ppTitle = xmobarColor "#b3afc2" "" . shorten 20               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
               , ppExtras  = [windowCount]                                     -- # of windows current workspace
