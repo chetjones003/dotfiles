@@ -77,6 +77,9 @@ myTerminal = "alacritty -e fish"    -- Sets default terminal
 myBrowser :: String
 myBrowser = "firefox "  -- Sets firefox as browser
 
+myFileManager :: String
+myFileManager = "nautilis "
+
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
 
@@ -262,27 +265,20 @@ myKeys =
 
     -- Run Prompt
         , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
+        , ("M-S-p", spawn "rofi -modi run -show drun -config ~/.config/rofi/themes/dt-center.rasi -display-run 'Run: '") -- Dmenu
 
     -- Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
     -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
-        , ("M-p a", spawn "dm-sounds")    -- choose an ambient background
-        , ("M-p b", spawn "dm-setbg")     -- set a background
         , ("M-p c", spawn "dm-colpick")   -- pick color from our scheme
         , ("M-p e", spawn "dm-confedit")  -- edit config files
-        , ("M-p i", spawn "dm-maim")      -- screenshots (images)
         , ("M-p k", spawn "dm-kill")      -- kill processes
-        , ("M-p m", spawn "dm-man")       -- manpages
-        , ("M-p o", spawn "dm-bookman")   -- qutebrowser bookmarks/history
         , ("M-p w", spawn "dm-wifi")      -- select wifi
-        , ("M-p p", spawn "passmenu")     -- passmenu
         , ("M-p q", spawn "dm-logout")    -- logout menu
-        , ("M-p r", spawn "dm-reddit")    -- reddio (a reddit viewer)
-        , ("M-p s", spawn "dm-websearch") -- search various search engines
 
     -- Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
-        , ("M-b", spawn (myBrowser ++ " www.youtube.com/c/DistroTube/"))
+        , ("M-b", spawn (myBrowser ++ "https://github.com/chetjones003/"))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
 
     -- Kill windows
@@ -294,7 +290,6 @@ myKeys =
         , ("M-,", prevScreen)  -- Switch focus to prev monitor
 
     -- Floating windows
-        , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
         , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile
         , ("M-S-t", sinkAll)                       -- Push ALL floating windows to tile
 
@@ -317,7 +312,7 @@ myKeys =
 
     -- Layouts
         , ("M-<Tab>", sendMessage NextLayout)           -- Switch to next layout
-        , ("M-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+        , ("M-S-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
 
     -- Increase/decrease windows in the master pane or the stack
         , ("M-S-<Up>", sendMessage (IncMasterN 1))      -- Increase # of clients master pane
