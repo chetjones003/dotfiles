@@ -1,0 +1,416 @@
+#+TITLE: My Emacs Config
+#+AUTHOR: Chet Jones
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.doom.d/config.el :mkdirp yes
+
+* TABLE OF CONTENTS :toc:
+- [[#dashboard][Dashboard]]
+- [[#bookmarks-and-buffers][BOOKMARKS AND BUFFERS]]
+- [[#dired][DIRED]]
+  - [[#keybindings-to-open-dired][Keybindings To Open Dired]]
+  - [[#keybindings-within-dired][Keybindings Within Dired]]
+  - [[#keybindings-within-dired-with-peep-dired-mode-enabled][Keybindings Within Dired With Peep-Dired-Mode Enabled]]
+- [[#doom-theme][DOOM THEME]]
+- [[#emojis][EMOJIS]]
+- [[#evaluate-elisp-expressions][EVALUATE ELISP EXPRESSIONS]]
+- [[#eww][EWW]]
+- [[#fonts][FONTS]]
+- [[#ivy][IVY]]
+  - [[#ivy-posframe][IVY-POSFRAME]]
+  - [[#ivy-keybindings][IVY KEYBINDINGS]]
+- [[#line-settings][LINE SETTINGS]]
+- [[#mouse-support][MOUSE SUPPORT]]
+- [[#neotree][NEOTREE]]
+- [[#open-specific-files][OPEN SPECIFIC FILES]]
+- [[#org][Org]]
+  - [[#org-config][Org Config]]
+- [[#shells][SHELLS]]
+- [[#splits][SPLITS]]
+
+* Dashboard
+  #+begin_src emacs-lisp
+(setq +doom-dashboard-menu-sections
+'(("Reload last session"
+    :icon (all-the-icons-octicon "history" :face 'doom-dashboard-menu-title)
+    :when (cond ((require 'persp-mode nil t)
+                 (file-exists-p (expand-file-name persp-auto-save-fname persp-save-dir)))
+                ((require 'desktop nil t)
+                 (file-exists-p (desktop-full-file-name))))
+    :face (:inherit (doom-dashboard-menu-title bold))
+    :action doom/quickload-session)
+    ("Open org-roam Daily"
+    :icon (all-the-icons-octicon "squirrel" :face 'doom-dashboard-menu-title)
+    :when (fboundp 'org-roam-dailies-find-today)
+    :action org-roam-dailies-today)
+    ("Open org-agenda"
+    :icon (all-the-icons-octicon "calendar" :face 'doom-dashboard-menu-title)
+    :when (fboundp 'org-agenda)
+    :action org-agenda)
+    ("Recently opened files"
+    :icon (all-the-icons-octicon "file-text" :face 'doom-dashboard-menu-title)
+    :action recentf-open-files)
+    ("Open project"
+    :icon (all-the-icons-octicon "briefcase" :face 'doom-dashboard-menu-title)
+    :action projectile-switch-project)
+    ("Jump to bookmark"
+    :icon (all-the-icons-octicon "bookmark" :face 'doom-dashboard-menu-title)
+    :action bookmark-jump)
+    ("Open documentation"
+    :icon (all-the-icons-octicon "book" :face 'doom-dashboard-menu-title)
+    :action doom/help)))
+  #+end_src
+
+* BOOKMARKS AND BUFFERS
+Doom Emacs uses 'SPC b' for keybindings related to bookmarks and buffers.  Bookmarks are somewhat like registers in that they record positions you can jump to.  Unlike registers, they have long names, and they persist automatically from one Emacs session to the next. The prototypical use of bookmarks is to record where you were reading in various files.  Regarding /buffers/, the text you are editing in Emacs resides in an object called a /buffer/. Each time you visit a file, a buffer is used to hold the file’s text. Each time you invoke Dired, a buffer is used to hold the directory listing.
+
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+      (:prefix ("b". "buffer")
+       :desc "List bookmarks" "L" #'list-bookmarks
+       :desc "Save current bookmarks to bookmark file" "w" #'bookmark-save))
+#+END_SRC
+* DIRED
+Dired is the file manager within Emacs.  Below, I setup keybindings for image previews (peep-dired).  Doom Emacs does not use 'SPC d' for any of its keybindings, so I've chosen the format of 'SPC d' plus 'key'.
+
+** Keybindings To Open Dired
+| COMMAND    | DESCRIPTION                        | KEYBINDING |
+|------------+------------------------------------+------------|
+| dired      | /Open dired file manager/            | SPC d d    |
+| dired-jump | /Jump to current directory in dired/ | SPC d j    |
+
+** Keybindings Within Dired
+| COMMAND             | DESCRIPTION                                   | KEYBINDING |
+|---------------------+-----------------------------------------------+------------|
+| dired-view-file     | /View file in dired/                          | SPC d v    |
+| dired-up-directory  | /Go up in directory tree/                     | h          |
+| dired-find-file     | /Go down in directory tree (or open if file)/ | l          |
+| dired-next-line     | Move down to next line                        | j          |
+| dired-previous-line | Move up to previous line                      | k          |
+| dired-mark          | Mark file at point                            | m          |
+| dired-unmark        | Unmark file at point                          | u          |
+
+** Keybindings Within Dired With Peep-Dired-Mode Enabled
+| COMMAND              | DESCRIPTION                              | KEYBINDING |
+|----------------------+------------------------------------------+------------|
+| peep-dired           | /Toggle previews within dired/             | SPC d p    |
+| peep-dired-next-file | /Move to next file in peep-dired-mode/     | j          |
+| peep-dired-prev-file | /Move to previous file in peep-dired-mode/ | k          |
+
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+      (:prefix ("d" . "dired")
+       :desc "Open dired" "d" #'dired
+       :desc "Dired jump to current" "j" #'dired-jump)
+      (:after dired
+       (:map dired-mode-map
+        :desc "Peep-dired image previews" "d p" #'peep-dired
+        :desc "Dired view file" "d v" #'dired-view-file)))
+;; Make 'h' and 'l' go back and forward in dired. Much faster to navigate the directory structure!
+(evil-define-key 'normal dired-mode-map
+  (kbd "M-RET") 'dired-display-file
+  (kbd "h") 'dired-up-directory
+  (kbd "l") 'dired-open-file ; use dired-find-file instead of dired-open.
+  (kbd "m") 'dired-mark
+  (kbd "t") 'dired-toggle-marks
+  (kbd "u") 'dired-unmark
+  (kbd "C") 'dired-do-copy
+  (kbd "D") 'dired-do-delete
+  (kbd "J") 'dired-goto-file
+  (kbd "M") 'dired-chmod
+  (kbd "O") 'dired-chown
+  (kbd "P") 'dired-do-print
+  (kbd "R") 'dired-rename
+  (kbd "T") 'dired-do-touch
+  (kbd "Y") 'dired-copy-filenamecopy-filename-as-kill ; copies filename to kill ring.
+  (kbd "+") 'dired-create-directory
+  (kbd "-") 'dired-up-directory
+  (kbd "% l") 'dired-downcase
+  (kbd "% u") 'dired-upcase
+  (kbd "; d") 'epa-dired-do-decrypt
+  (kbd "; e") 'epa-dired-do-encrypt)
+;; If peep-dired is enabled, you will get image previews as you go up/down with 'j' and 'k'
+(evil-define-key 'normal peep-dired-mode-map
+  (kbd "j") 'peep-dired-next-file
+  (kbd "k") 'peep-dired-prev-file)
+(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+;; Get file icons in dired
+;;(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+;; With dired-open plugin, you can launch external programs for certain extensions
+;; For example, I set all .png files to open in 'sxiv' and all .mp4 files to open in 'mpv'
+(setq dired-open-extensions '(("gif" . "sxiv")
+                              ("jpg" . "sxiv")
+                              ("png" . "sxiv")
+                              ("mkv" . "mpv")
+                              ("mp4" . "mpv")))
+#+END_SRC
+
+* DOOM THEME
+Setting the theme to doom-one.  To try out new themes, I set a keybinding for counsel-load-theme with 'SPC h t'.
+
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-one)
+(map! :leader
+      :desc "Load new theme" "h t" #'counsel-load-theme)
+
+;; Make frame transparency overridable
+(defvar efs/frame-transparency '(95 . 95))
+
+;; Set frame transparency
+(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
+(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
+#+END_SRC
+
+* EMOJIS
+Emojify is an Emacs extension to display emojis. It can display github style emojis like :smile: or plain ascii ones like :).
+
+#+begin_src emacs-lisp
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+#+end_src
+
+* EVALUATE ELISP EXPRESSIONS
+Changing some keybindings from their defaults to better fit with Doom Emacs, and to avoid conflicts with my window managers which sometimes use the control key in their keybindings.  By default, Doom Emacs does not use 'SPC e' for anything, so I choose to use the format 'SPC e' plus 'key' for these (I also use 'SPC e' for 'eww' keybindings).
+
+| COMMAND         | DESCRIPTION                                  | KEYBINDING |
+|-----------------+----------------------------------------------+------------|
+| eval-buffer     | /Evaluate elisp in buffer/                     | SPC e b    |
+| eval-defun      | /Evaluate the defun containing or after point/ | SPC e d    |
+| eval-expression | /Evaluate an elisp expression/                 | SPC e e    |
+| eval-last-sexp  | /Evaluate elisp expression before point/       | SPC e l    |
+| eval-region     | /Evaluate elisp in region/                     | SPC e r    |
+
+#+Begin_src emacs-lisp
+(map! :leader
+      (:prefix ("e". "evaluate/EWW")
+       :desc "Evaluate elisp in buffer" "b" #'eval-buffer
+       :desc "Evaluate defun" "d" #'eval-defun
+       :desc "Evaluate elisp expression" "e" #'eval-expression
+       :desc "Evaluate last sexpression" "l" #'eval-last-sexp
+       :desc "Evaluate elisp in region" "r" #'eval-region))
+#+END_SRC
+
+* EWW
+EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to open in a specific browser (eww) with browse-url-browser-function.  By default, Doom Emacs does not use 'SPC e' for anything, so I choose to use the format 'SPC e' plus 'key' for these (I also use 'SPC e' for 'eval' keybindings).  I chose to use 'SPC s w' for eww-search-words because Doom Emacs uses 'SPC s' for 'search' commands.
+
+#+BEGIN_SRC emacs-lisp
+(setq browse-url-browser-function 'eww-browse-url)
+(map! :leader
+      :desc "Search web for text between BEG/END"
+      "s w" #'eww-search-words
+      (:prefix ("e" . "evaluate/EWW")
+       :desc "Eww web browser" "w" #'eww
+       :desc "Eww reload page" "R" #'eww-reload))
+#+END_SRC
+
+* FONTS
+Settings related to fonts within Doom Emacs:
++ 'doom-font' -- standard monospace font that is used for most things in Emacs.
++ 'doom-variable-pitch-font' -- variable font which is useful in some Emacs plugins.
++ 'doom-big-font' -- used in doom-big-font-mode; useful for presentations.
++ 'font-lock-comment-face' -- for comments.
++ 'font-lock-keyword-face' -- for keywords with special significance like 'setq' in elisp.
++ 'global-prettify-symbols-mode' -- change certain keywords to symbols, such as lambda!
+
+#+BEGIN_SRC emacs-lisp
+(setq doom-font (font-spec :family "Source Code Pro" :size 15)
+      doom-variable-pitch-font (font-spec :family "Cantarell" :size 15)
+      doom-big-font (font-spec :family "Source Code Pro" :size 24))
+
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic nil))
+
+(custom-set-faces!
+  '(font-lock-comment-face)
+  '(font-lock-keyword-face))
+
+(setq global-prettify-symbols-mode t)
+#+END_SRC
+
+* IVY
+Ivy is a generic completion mechanism for Emacs.
+
+** IVY-POSFRAME
+Ivy-posframe is an ivy extension, which lets ivy use posframe to show its candidate menu.  Some of the settings below involve:
++ ivy-posframe-display-functions-alist -- sets the display position for specific programs
++ ivy-posframe-height-alist -- sets the height of the list displayed for specific programs
+
+Available functions (positions) for 'ivy-posframe-display-functions-alist'
++ ivy-posframe-display-at-frame-center
++ ivy-posframe-display-at-window-center
++ ivy-posframe-display-at-frame-bottom-left
++ ivy-posframe-display-at-window-bottom-left
++ ivy-posframe-display-at-frame-bottom-window-center
++ ivy-posframe-display-at-point
++ ivy-posframe-display-at-frame-top-center
+
+=NOTE:= If the setting for 'ivy-posframe-display' is set to 'nil' (false), anything that is set to 'ivy-display-function-fallback' will just default to their normal position in Doom Emacs (usually a bottom split).  However, if this is set to 't' (true), then the fallback position will be centered in the window.
+
+#+BEGIN_SRC emacs-lisp
+(setq ivy-posframe-display-functions-alist
+      '((swiper                     . ivy-posframe-display-at-point)
+        (complete-symbol            . ivy-posframe-display-at-point)
+        (counsel-M-x                . ivy-display-function-fallback)
+        (counsel-esh-history        . ivy-posframe-display-at-window-center)
+        (counsel-describe-function  . ivy-display-function-fallback)
+        (counsel-describe-variable  . ivy-display-function-fallback)
+        (counsel-find-file          . ivy-display-function-fallback)
+        (counsel-recentf            . ivy-display-function-fallback)
+        (counsel-register           . ivy-posframe-display-at-frame-bottom-window-center)
+        (dmenu                      . ivy-posframe-display-at-frame-top-center)
+        (nil                        . ivy-posframe-display))
+      ivy-posframe-height-alist
+      '((swiper . 20)
+        (dmenu . 20)
+        (t . 10)))
+(ivy-posframe-mode 0) ; 1 enables posframe-mode, 0 disables it.
+#+END_SRC
+
+** IVY KEYBINDINGS
+By default, Doom Emacs does not use 'SPC v', so the format I use for these bindings is 'SPC v' plus 'key'.
+
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+      (:prefix ("v" . "Ivy")
+       :desc "Ivy push view" "v p" #'ivy-push-view
+       :desc "Ivy switch view" "v s" #'ivy-switch-view))
+#+END_SRC
+
+* LINE SETTINGS
+I set comment-line to 'SPC TAB TAB' which is a rather comfortable keybinding for me on my ZSA Moonlander keyboard.  The standard Emacs keybinding for comment-line is 'C-x C-;'.  The other keybindings are for commands that toggle on/off various line-related settings.  Doom Emacs uses 'SPC t' for "toggle" commands, so I choose 'SPC t' plus 'key' for those bindings.
+
+| COMMAND                  | DESCRIPTION                               | KEYBINDING  |
+|--------------------------+-------------------------------------------+-------------|
+| comment-line             | /Comment or uncomment lines/                | SPC TAB TAB |
+| hl-line-mode             | /Toggle line highlighting in current frame/ | SPC t h     |
+| global-hl-line-mode      | /Toggle line highlighting globally/         | SPC t H     |
+| doom/toggle-line-numbers | /Toggle line numbers/                       | SPC t l     |
+| toggle-truncate-lines    | /Toggle truncate lines/                     | SPC t t     |
+
+#+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type t)
+(map! :leader
+      :desc "Comment or uncomment lines" "TAB TAB" #'comment-line
+      (:prefix ("t" . "toggle")
+       :desc "Toggle line numbers" "l" #'doom/toggle-line-numbers
+       :desc "Toggle line highlight in frame" "h" #'hl-line-mode
+       :desc "Toggle line highlight globally" "H" #'global-hl-line-mode
+       :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
+
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                treemacs-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+END_SRC
+
+* MOUSE SUPPORT
+Adding mouse support in the terminal version of Emacs.
+
+#+begin_src emacs-lisp
+(xterm-mouse-mode 1)
+#+end_src
+
+* NEOTREE
+Neotree is a file tree viewer.  When you open neotree, it jumps to the current file thanks to neo-smart-open.  The neo-window-fixed-size setting makes the neotree width be adjustable.  Doom Emacs had no keybindings set for neotree.  Since Doom Emacs uses 'SPC t' for 'toggle' keybindings, I used 'SPC t n' for toggle-neotree.
+
+| COMMAND        | DESCRIPTION               | KEYBINDING |
+|----------------+---------------------------+------------|
+| neotree-toggle | /Toggle neotree/            | SPC t n    |
+| neotree- dir   | /Open directory in neotree/ | SPC d n    |
+
+#+BEGIN_SRC emacs-lisp
+(after! neotree
+  (setq neo-smart-open t
+        neo-window-fixed-size nil
+        neo-window-width 25))
+(after! doom-themes
+  (setq doom-neotree-enable-variable-pitch t))
+(map! :leader
+      :desc "Toggle neotree file viewer" "t n" #'neotree-toggle
+      :desc "Open directory in neotree" "d n" #'neotree-dir)
+#+END_SRC
+
+* OPEN SPECIFIC FILES
+Keybindings to open files that I work with all the time using the find-file command, which is the interactive file search that opens with 'C-x C-f' in GNU Emacs or 'SPC f f' in Doom Emacs.  These keybindings use find-file non-interactively since we specify exactly what file to open.  The format I use for these bindings is 'SPC -' plus 'key' since Doom Emacs does not use these keybindings.
+
+| PATH TO FILE                   | DESCRIPTION           | KEYBINDING |
+|--------------------------------+-----------------------+------------|
+| ~/Org/agenda.org               | /Edit agenda file/      | SPC - a    |
+| ~/.config/doom/config.org"     | /Edit doom config.org/  | SPC - c    |
+| ~/.config/doom/init.el"        | /Edit doom init.el/     | SPC - i    |
+| ~/.config/doom/packages.el"    | /Edit doom packages.el/ | SPC - p    |
+
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+      (:prefix ("-" . "open file")
+       :desc "Edit agenda file" "a" #'(lambda () (interactive) (find-file "~/Org/agenda.org"))
+       :desc "Edit doom config.org" "c" #'(lambda () (interactive) (find-file "~/.config/doom/config.org"))
+       :desc "Edit doom init.el" "i" #'(lambda () (interactive) (find-file "~/.config/doom/init.el"))
+       :desc "Edit doom packages.el" "p" #'(lambda () (interactive) (find-file "~/.config/doom/packages.el"))))
+#+END_SRC
+
+* Org
+Org Mode is one of the hallmark features of Emacs. It is a rich document editor, project planner, task and time tracker, blogging engine, and literate coding utility all wrapped up in one package.
+** Org Config
+
+#+begin_src emacs-lisp
+(after! org
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (remove-hook 'org-mode-hook #'org-superstar-mode)
+  (setq org-fontify-quote-and-verse-blocks nil
+        org-fontify-whole-heading-line nil
+        org-hide-leading-stars t
+        org-startup-indented nil)
+  (setq org-directory "~/Org/")
+  (setq org-ellipsis " ▾")
+
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+
+  (setq org-agenda-files
+    '("~/Org/Tasks.org"
+      "~/Org/Habits.org"
+      "~/Org/Birthdays.org"))
+
+  (setq org-todo-keywords
+    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")))
+
+  (setq org-refile-targets
+    '(("Archive.org" :maxlevel . 1)
+      ("Tasks.org" :maxlevel . 1)))
+
+  ;; Save Org buffers after refiling!
+  (advice-add 'org-refile :after 'org-save-all-org-buffers))
+
+(defun efs/org-mode-visual-fill ()
+  (setq visual-fill-column-width 120
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . efs/org-mode-visual-fill))
+#+end_src
+
+* SHELLS
+Settings for the various shells and terminal emulators within Emacs.
+
+#+BEGIN_SRC emacs-lisp
+(setq shell-file-name "/bin/fish"
+      vterm-max-scrollback 5000)
+#+END_SRC
+
+* SPLITS
+I set splits to default to opening on the right using 'prefer-horizontal-split'.  I set a keybinding for 'clone-indirect-buffer-other-window' for when I want to have the same document in two splits.  The text of the indirect buffer is always identical to the text of its base buffer; changes made by editing either one are visible immediately in the other.  But in all other respects, the indirect buffer and its base buffer are completely separate.  For example, I can fold one split but other will be unfolded.
+
+#+BEGIN_SRC emacs-lisp
+(defun prefer-horizontal-split ()
+  (set-variable 'split-height-threshold nil t)
+  (set-variable 'split-width-threshold 1 t)) ; make this as low as needed
+(add-hook 'better-jumper--window-configuration-hook 'prefer-horizontal-split)
+(map! :leader
+      :desc "Clone indirect buffer other window" "b c" #'clone-indirect-buffer-other-window)
+#+END_SRC
+
