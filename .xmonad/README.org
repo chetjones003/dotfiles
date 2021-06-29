@@ -136,7 +136,7 @@ These are commands we want XMonad to execute on startup, such as running a compo
 #+BEGIN_SRC haskell
 myStartupHook :: X ()
 myStartupHook = do
-    spawnOnce "compton &"
+    spawnOnce "picom &"
     spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
 #+END_SRC
 
@@ -269,8 +269,8 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
 I have made my workspaces in xmobar "clickable." Clickable workspaces means the mouse can be used to switch workspaces. This requires /xdotool/ to be installed. You need to use UnsafeStdInReader instead of simply StdInReader in your xmobar config so you can pass actions to it.
 
 #+begin_src haskell
-myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
---myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
+--myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
+myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
