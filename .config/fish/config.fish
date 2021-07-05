@@ -8,8 +8,8 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
-set EDITOR "emacsclient -t -a ''"                 # $EDITOR use Emacs in terminal
-set VISUAL "emacsclient -c -n -a emacs"              # $VISUAL use Emacs in GUI mode
+set EDITOR "vim"                 # $EDITOR use Emacs in terminal
+set VISUAL "vim"                 # $VISUAL use Emacs in GUI mode
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 set fish_color_normal brcyan
