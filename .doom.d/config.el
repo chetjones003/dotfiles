@@ -79,7 +79,7 @@
                               ("mkv" . "mpv")
                               ("mp4" . "mpv")))
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-tomorrow-night)
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
 
@@ -87,8 +87,8 @@
 (defvar efs/frame-transparency '(95 . 95))
 
 ;; Set frame transparency
-(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
-(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
+;;(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
+;;(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
 
 (use-package emojify
   :hook (after-init . global-emojify-mode))
