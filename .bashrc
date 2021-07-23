@@ -1,4 +1,4 @@
-./fm6000 -as -c green
+#./fm6000 -as -c green
 
 # Switch ctrl and caps
 xmodmap .Xmodmap

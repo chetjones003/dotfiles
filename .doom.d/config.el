@@ -109,9 +109,9 @@
        :desc "Eww web browser" "w" #'eww
        :desc "Eww reload page" "R" #'eww-reload))
 
-(setq doom-font (font-spec :family "Source Code Pro" :size 15)
-      doom-variable-pitch-font (font-spec :family "Cantarell" :size 15)
-      doom-big-font (font-spec :family "Source Code Pro" :size 24))
+(setq doom-font (font-spec :family "Ubuntu Mono" :size 17)
+      doom-variable-pitch-font (font-spec :family "Cantarell" :size 17)
+      doom-big-font (font-spec :family "Ubuntu Mono" :size 24))
 
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -219,8 +219,21 @@
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
 
+(use-package company-tabnine :ensure t)
+(add-to-list 'company-backends 'company-tabnine)
+
 (setq shell-file-name "/bin/fish"
       vterm-max-scrollback 5000)
+(setq eshell-aliases-file "~/.doom.d/eshell/aliases"
+      eshell-history-size 5000
+      eshell-buffer-maximum-lines 5000
+      eshell-hist-ignoredups t
+      eshell-scroll-to-bottom-on-input t
+      eshell-destroy-buffer-when-process-dies t
+      eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
+(map! :leader
+      :desc "Eshell" "e s" #'eshell
+      :desc "Counsel eshell history" "e h" #'counsel-esh-history)
 
 (defun prefer-horizontal-split ()
   (set-variable 'split-height-threshold nil t)

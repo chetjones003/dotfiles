@@ -6,6 +6,7 @@
 (package! js-react-redux-yasnippets)
 (package! js2-mode)
 (package! lsp-haskell)
+(package! lsp-python-ms)
 (package! org-bullets)
 (package! ox-gemini)
 (package! paredit)

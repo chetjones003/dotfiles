@@ -23,6 +23,7 @@
 - [[#open-specific-files][OPEN SPECIFIC FILES]]
 - [[#org][Org]]
   - [[#org-config][Org Config]]
+- [[#python][Python]]
 - [[#shells][SHELLS]]
 - [[#splits][SPLITS]]
 
@@ -211,9 +212,9 @@ Settings related to fonts within Doom Emacs:
 + 'global-prettify-symbols-mode' -- change certain keywords to symbols, such as lambda!
 
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "Source Code Pro" :size 15)
-      doom-variable-pitch-font (font-spec :family "Cantarell" :size 15)
-      doom-big-font (font-spec :family "Source Code Pro" :size 24))
+(setq doom-font (font-spec :family "Ubuntu Mono" :size 17)
+      doom-variable-pitch-font (font-spec :family "Cantarell" :size 17)
+      doom-big-font (font-spec :family "Ubuntu Mono" :size 24))
 
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -394,12 +395,30 @@ Org Mode is one of the hallmark features of Emacs. It is a rich document editor,
   :hook (org-mode . efs/org-mode-visual-fill))
 #+end_src
 
+* Python
+Settings for python.
+
+#+BEGIN_SRC emacs-lisp
+(use-package company-tabnine :ensure t)
+(add-to-list 'company-backends 'company-tabnine)
+#+END_SRC
+
 * SHELLS
 Settings for the various shells and terminal emulators within Emacs.
 
 #+BEGIN_SRC emacs-lisp
 (setq shell-file-name "/bin/fish"
       vterm-max-scrollback 5000)
+(setq eshell-aliases-file "~/.doom.d/eshell/aliases"
+      eshell-history-size 5000
+      eshell-buffer-maximum-lines 5000
+      eshell-hist-ignoredups t
+      eshell-scroll-to-bottom-on-input t
+      eshell-destroy-buffer-when-process-dies t
+      eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
+(map! :leader
+      :desc "Eshell" "e s" #'eshell
+      :desc "Counsel eshell history" "e h" #'counsel-esh-history)
 #+END_SRC
 
 * SPLITS
