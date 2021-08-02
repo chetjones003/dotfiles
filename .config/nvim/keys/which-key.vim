@@ -27,40 +27,40 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
 let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
 let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
-let g:which_key_map['r'] = [ ':RnvimrToggle'                    , 'ranger' ]
+let g:which_key_map['r'] = [ ':RnvimrToggle'              , 'ranger' ]
 let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
 
 " f is for files
 let g:which_key_map.f = {
       \ 'name' : '+files' ,
-      \ 'f' : [':Files'          , 'search files'],
-      \ 's' : [':w'          , 'save'],
+      \ 'f' : [':Files'   , 'search files'],
+      \ 's' : [':w'       , 'save'],
       \ }
 
 " c is for coc
 let g:which_key_map.c = {
       \ 'name' : '+coc' ,
-      \ 'f' : [':Fold'          , 'Fold'],
+      \ 'f' : [':Fold'  , 'Fold'],
       \ }
 
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
-      \ 'f' : [':bdelete'          , 'close buffer'],
+      \ 'd' : [':bdelete'  , 'close buffer'],
       \ }
 
 " g is for git
 let g:which_key_map.g = {
       \ 'name' : '+git' ,
-      \ 's' : [':FloatermNew lazygit'          , 'status'],
-      \ 'a' : [':Git add'          , 'add'],
-      \ 'c' : [':Git commit'          , 'commit'],
-      \ 'p' : [':Git push'          , 'push'],
-      \ 'u' : [':Git pull'          , 'pull'],
-      \ 'd' : [':Git diff'          , 'diff'],
-      \ 'l' : [':Git log'          , 'log'],
-      \ 'b' : [':GBrowse'          , 'go to repo'],
-      \ 'y' : [':GV'          , 'commit browse'],
+      \ 's' : [':FloatermNew lazygit'     , 'status'],
+      \ 'a' : [':Git add'                 , 'add'],
+      \ 'c' : [':Git commit'              , 'commit'],
+      \ 'p' : [':Git push'                , 'push'],
+      \ 'u' : [':Git pull'                , 'pull'],
+      \ 'd' : [':Git diff'                , 'diff'],
+      \ 'l' : [':Git log'                 , 'log'],
+      \ 'b' : [':GBrowse'                 , 'go to repo'],
+      \ 'y' : [':GV'                      , 'commit browse'],
       \ }
 
 let g:which_key_map.t = {
