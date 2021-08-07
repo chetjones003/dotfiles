@@ -8,7 +8,7 @@
  '(company-require-match 'never)
  '(js-indent-level 2)
  '(package-selected-packages
-   '(company-tabnine vterm lsp-pyright lsp-haskell paredit js-react-redux-yasnippets react-snippets ewal-spacemacs-themes use-package spacemacs-theme visual-fill-column))
+   '(company-rtags rtags ccls irony company-tabnine vterm lsp-pyright lsp-haskell paredit js-react-redux-yasnippets react-snippets ewal-spacemacs-themes use-package spacemacs-theme visual-fill-column))
  '(quickrun-focus-p nil)
  '(quickrun-timeout-seconds 100000))
 (custom-set-faces

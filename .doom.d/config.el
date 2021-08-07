@@ -222,6 +222,8 @@
 (use-package company-tabnine :ensure t)
 (add-to-list 'company-backends 'company-tabnine)
 
+
+
 (setq shell-file-name "/bin/fish"
       vterm-max-scrollback 5000)
 (setq eshell-aliases-file "~/.doom.d/eshell/aliases"

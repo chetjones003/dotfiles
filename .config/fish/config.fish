@@ -122,6 +122,9 @@ alias newtag='git tag -a'
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
+# compile for opengl
+alias glfwcomp="g++ src/main.cpp -o main -std=c++11 -Wall -lGL -lGLU -lglut -lGLEW -lglfw -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor"
+
 # gpg encryption
 # verify signature for isos
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"

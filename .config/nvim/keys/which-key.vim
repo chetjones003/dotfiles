@@ -41,6 +41,7 @@ let g:which_key_map.f = {
 let g:which_key_map.c = {
       \ 'name' : '+coc' ,
       \ 'f' : [':Fold'  , 'Fold'],
+      \ 'g' : [':CMake'  , 'CMake Generate'],
       \ }
 
 " b is for buffer
