@@ -67,7 +67,7 @@ let g:which_key_map.g = {
 let g:which_key_map.t = {
       \ 'name' : '+terminal' ,
       \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
-      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
+      \ 'f' : [':FloatermNew fish'                               , 'fzf'],
       \ 'n' : [':FloatermNew node'                              , 'node'],
       \ 'p' : [':FloatermNew python'                            , 'python'],
       \ 'r' : [':FloatermNew ranger'                            , 'ranger'],

@@ -9,6 +9,7 @@ endif
 call plug#begin('~/.config/nvim/autoload/plugged')
 
     Plug 'sheerun/vim-polyglot'
+    Plug 'preservim/nerdtree'
     Plug 'vhdirk/vim-cmake'
     Plug 'antoinemadec/FixCursorHold.nvim'
     Plug 'scrooloose/NERDTree'
