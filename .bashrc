@@ -6,7 +6,7 @@ export HISTCONTROL=ignoredups:erasedups           # no duplicate entries
 export ALTERNATE_EDITOR=""                        # setting for emacsclient
 export EDITOR="emacsclient -t -a ''"              # $EDITOR use Emacs in terminal
 export VISUAL="emacsclient -c -n -a emacs"           # $VISUAL use Emacs in GUI mode
-export MESA_GL_VERSION_OVERRIDE=3.3
+export MESA_GLSL_VERSION_OVERRIDE=330
 export MESA_GLES_VERSION_OVERRIDE=3.3
 
 ### SET MANPAGER

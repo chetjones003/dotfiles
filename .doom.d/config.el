@@ -70,7 +70,7 @@
   (kbd "k") 'peep-dired-prev-file)
 (add-hook 'peep-dired-hook 'evil-normalize-keymaps)
 ;; Get file icons in dired
-;;(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 ;; With dired-open plugin, you can launch external programs for certain extensions
 ;; For example, I set all .png files to open in 'sxiv' and all .mp4 files to open in 'mpv'
 (setq dired-open-extensions '(("gif" . "sxiv")
@@ -79,7 +79,7 @@
                               ("mkv" . "mpv")
                               ("mp4" . "mpv")))
 
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-old-hope)
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
 
@@ -87,8 +87,8 @@
 (defvar efs/frame-transparency '(95 . 95))
 
 ;; Set frame transparency
-;;(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
-;;(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
+(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
+(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
 
 (use-package emojify
   :hook (after-init . global-emojify-mode))
@@ -109,9 +109,9 @@
        :desc "Eww web browser" "w" #'eww
        :desc "Eww reload page" "R" #'eww-reload))
 
-(setq doom-font (font-spec :family "Ubuntu Mono" :size 17)
+(setq doom-font (font-spec :family "UbuntuMono Nerd Font" :size 16)
       doom-variable-pitch-font (font-spec :family "Cantarell" :size 17)
-      doom-big-font (font-spec :family "Ubuntu Mono" :size 24))
+      doom-big-font (font-spec :family "UbuntuMono Nerd Font" :size 24))
 
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -139,7 +139,7 @@
       '((swiper . 20)
         (dmenu . 20)
         (t . 10)))
-(ivy-posframe-mode 0) ; 1 enables posframe-mode, 0 disables it.
+(ivy-posframe-mode 1) ; 1 enables posframe-mode, 0 disables it.
 
 (map! :leader
       (:prefix ("v" . "Ivy")
@@ -221,6 +221,9 @@
 
 (use-package company-tabnine :ensure t)
 (add-to-list 'company-backends 'company-tabnine)
+
+(map! :leader
+      :desc "quickrun" "q r" #'quickrun)
 
 
 

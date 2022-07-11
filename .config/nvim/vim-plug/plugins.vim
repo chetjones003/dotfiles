@@ -15,7 +15,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'scrooloose/NERDTree'
     Plug 'jiangmiao/auto-pairs'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'joshdick/onedark.vim'
+    "Plug 'joshdick/onedark.vim'
+    Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'unblevable/quick-scope'
@@ -32,6 +33,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'voldikss/vim-floaterm'
     Plug 'mhinz/vim-startify'
     Plug 'honza/vim-snippets'
+    Plug 'habamax/vim-godot'
 
 call plug#end()
 

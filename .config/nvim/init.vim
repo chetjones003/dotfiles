@@ -19,7 +19,8 @@ source $HOME/.config/nvim/plug-config/snippets.vim
 source $HOME/.config/nvim/plug-config/start-screen.vim
 
 " Themes
-source $HOME/.config/nvim/themes/onedark.vim
+"source $HOME/.config/nvim/themes/onedark.vim
+"source $HOME/.config/nvim/themes/gruvbox.vim
 source $HOME/.config/nvim/themes/airline.vim
 
 " Which Key
