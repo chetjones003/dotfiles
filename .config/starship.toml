@@ -1,55 +1,122 @@
-add_newline = false
+# ~/.config/starship.toml
+
+add_newline = true
 
 [line_break]
-disabled = true
-
-[character]
-success_symbol = '[➜](bold blue) '
-error_symbol = "[✖](bold red) "
-
-[cmd_duration]
-min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
-format = " took [$duration]($style) "
-
-[directory]
-truncation_length = 5
-truncate_to_repo = false
-truncation_symbol = '../'
-format = "[$path]($style)[$lock_symbol]($lock_style) "
-home_symbol = '(home)'
-style = 'bold blue'
-
-[git_branch]
-format = "on [$symbol$branch]($style) "
-symbol = "branch:"
-style = "bold green"
-always_show_remote = true
-ignore_branches = []
-only_attached = false
 disabled = false
 
-[git_state]
-format = '[\($state( $progress_current of $progress_total)\)]($style) '
+[cmd_duration]
+style = "bold #f1fa8c"
 
-[git_commit]
-disabled = true
+[directory]
+truncation_length = 8
+truncation_symbol = ""
+style = "bold #50fa7b"
+read_only = " "
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                         
+success_symbol = "[➜](bold #50fa7b)"  
+error_symbol = "[➜](bold #ff5555)"  
+
+# Git
+[git_branch]
+symbol = " "
+style = "bold #ff79c6"
 
 [git_status]
-conflicted = "X"
-ahead = " -->:${count} "
-behind = " <--:${count} "
-diverged = " <-:${ahead_count} ->×${behind_count} "
-untracked = " ?:${count} "
-stashed = " ` "
-modified = " ~:${count} "
-staged = " S:${count} "
-renamed = " ren:${count} "
-deleted = " del:${count} "
-style = "bright-yellow"
+up_to_date = "✓"
+ahead = " ${count}"
+behind = " ${count}"
+staged = " ${count}"
+modified = " ${count}"
+untracked = "ﲅ ${count}"
+style = "bold #ff79c6"
+
+[status]
+style = "blue"
+symbol = ""
+success_symbol = ""
+not_executable_symbol = "!x"
+not_found_symbol = "?"
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+disabled = false
+
+[hostname]
+style = "bold #bd93f0"
+
+[username]
+format = "[$user]($style) on "
+style_user = "bold #8be9fd"
+show_always = true
+
+[sudo]
+style = "bold #8be9fd"
+symbol = " "
+disabled = false
+
+### Use Nerd Fonts for Lang
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
 
 [package]
-disabled = true
+symbol = " "
+
+[python]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
 
 [rust]
-format = 'via [$symbol($version )]($style)'
-symbol = 'rust:'
+symbol = " "
+
