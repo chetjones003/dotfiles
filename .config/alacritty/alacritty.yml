@@ -14,7 +14,7 @@ window:
     y: 5
 
   # Background opacity
-  opacity: 0.8
+  opacity: 0.95
 
   # Window decorations
   decorations: none
@@ -219,7 +219,7 @@ schemes:
     # Default colors
     primary:
       # hard contrast: background = '0x1d2021'
-      background: '#282828'
+      background: '#111111'
       # soft contrast: background = '0x32302f'
       foreground: '#ebdbb2'
 
