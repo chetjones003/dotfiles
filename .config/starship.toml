@@ -21,16 +21,16 @@ error_symbol = "[➜](bold #ff5555)"
 
 # Git
 [git_branch]
-symbol = " "
+symbol = "branch:"
 style = "bold #ff79c6"
 
 [git_status]
 up_to_date = "✓"
-ahead = " ${count}"
-behind = " ${count}"
-staged = " ${count}"
-modified = " ${count}"
-untracked = "ﲅ ${count}"
+ahead = "x${count}"
+behind = "x${count}"
+staged = "x${count}"
+modified = "x${count}"
+untracked = "?x${count}"
 style = "bold #ff79c6"
 
 [status]
@@ -38,7 +38,7 @@ style = "blue"
 symbol = ""
 success_symbol = ""
 not_executable_symbol = "!x"
-not_found_symbol = "?"
+not_found_symbol = "notfound"
 format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
 map_symbol = true
 disabled = false
