@@ -29,7 +29,7 @@ plug "Aloxaf/fzf-tab"
 plug "wintermi/zsh-rust"
 
 # keybinds
-bindkey '^ ' autosuggest-accept
+bindkey '^y' autosuggest-accept
 
 # Changing "ls" to "exa"
 alias ls="exa -al --color=always --group-directories-first" # my preferred listing
