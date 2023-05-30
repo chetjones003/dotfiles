@@ -26,11 +26,11 @@ style = "bold #ff79c6"
 
 [git_status]
 up_to_date = "✓"
-ahead = "x${count}"
-behind = "x${count}"
-staged = "x${count}"
-modified = "x${count}"
-untracked = "?x${count}"
+ahead = " x${count} "
+behind = " x${count} "
+staged = " x${count} "
+modified = " x${count} "
+untracked = " ?x${count} "
 style = "bold #ff79c6"
 
 [status]
