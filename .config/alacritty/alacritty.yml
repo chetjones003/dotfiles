@@ -14,7 +14,7 @@ window:
     y: 5
 
   # Background opacity
-  opacity: 0.9
+  opacity: 0.85
 
   # Window decorations
   decorations: none
@@ -471,7 +471,7 @@ schemes:
   ### Catppuccin ###
   Catppuccin: &Catppuccin
     primary:
-        background: "#222C2F" # base
+        background: "#191D2A" # base
         foreground: "#CAD3F5" # text
         # Bright and dim foreground colors
         dim_foreground: "#CAD3F5" # text

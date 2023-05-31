@@ -1,17 +1,19 @@
 # ~/.config/starship.toml
 
-add_newline = true
+add_newline = false
 
 [line_break]
-disabled = false
+disabled = true
 
 [cmd_duration]
 style = "bold #f1fa8c"
 
 [directory]
 truncation_length = 8
-truncation_symbol = ""
+truncation_symbol = "../"
+truncate_to_repo = false
 style = "bold #50fa7b"
+format = '[$path]($style)[$read_only]($read_only_style) '
 read_only = " "
 
 # Replace the "❯" symbol in the prompt with "➜"
@@ -21,23 +23,24 @@ error_symbol = "[➜](bold #ff5555)"
 
 # Git
 [git_branch]
+format = 'on [\($symbol$branch(:$remote_branch)\)]($style) '
 symbol = "branch:"
 style = "bold #ff79c6"
 
 [git_status]
-up_to_date = "✓"
-ahead = " x${count} "
-behind = " x${count} "
-staged = " x${count} "
-modified = " x${count} "
-untracked = " ?x${count} "
+up_to_date = "  "
+ahead = " ->x${count} "
+behind = " <-x${count} "
+staged = " Sx${count} "
+modified = " Mx${count} "
+untracked = " Ux${count} "
 style = "bold #ff79c6"
 
 [status]
 style = "blue"
-symbol = ""
+symbol = " ! "
 success_symbol = ""
-not_executable_symbol = "!x"
+not_executable_symbol = " !x "
 not_found_symbol = "notfound"
 format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
 map_symbol = true
@@ -50,73 +53,21 @@ style = "bold #bd93f0"
 format = "[$user]($style) on "
 style_user = "bold #8be9fd"
 show_always = true
+disabled = true
 
 [sudo]
 style = "bold #8be9fd"
 symbol = " "
 disabled = false
 
-### Use Nerd Fonts for Lang
-[aws]
-symbol = "  "
-
-[buf]
-symbol = " "
-
-[c]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[golang]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[memory_usage]
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
-
 [package]
-symbol = " "
-
-[python]
-symbol = " "
-
-[spack]
-symbol = "🅢 "
+disabled = true
 
 [rust]
-symbol = " "
+disabled = true
 
+[python]
+disabled = true
+
+[c]
+disabled = true
