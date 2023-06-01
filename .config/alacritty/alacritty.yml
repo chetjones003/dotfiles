@@ -14,7 +14,7 @@ window:
     y: 5
 
   # Background opacity
-  opacity: 0.85
+  opacity: 0.7
 
   # Window decorations
   decorations: none
@@ -129,7 +129,7 @@ font:
     y: 1
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 schemes:
   ### Doom One ###
@@ -471,7 +471,7 @@ schemes:
   ### Catppuccin ###
   Catppuccin: &Catppuccin
     primary:
-        background: "#191D2A" # base
+        background: "#090A0E" # base
         foreground: "#CAD3F5" # text
         # Bright and dim foreground colors
         dim_foreground: "#CAD3F5" # text
