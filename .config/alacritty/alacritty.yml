@@ -39,7 +39,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 1.0
+  opacity: 0.9
   # opacity: 0.80
 
   # Window decorations
@@ -558,7 +558,7 @@ schemes:
 
   RosePine: &RosePine
     primary:
-      background: "0x191724"
+      background: "0x100C02"
       foreground: "0xe0def4"
     cursor:
       text: "0xe0def4"
@@ -613,4 +613,4 @@ schemes:
 # *SolarizedDark
 # *TomorrowNight
 
-colors: *DoomOne
+colors: *RosePine
