@@ -1,0 +1,9 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Chet Jones
+	email = chetjones003@gmail.com
+[credential]
+	helper = store
+[core]
+	editor = nvim
