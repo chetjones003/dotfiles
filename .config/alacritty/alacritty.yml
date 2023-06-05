@@ -92,7 +92,7 @@ schemes:
       foreground: "0xe0def4"
     cursor:
       text: "0xe0def4"
-      cursor: "0x524f67"
+      cursor: "0xaaaaaa"
     vi_mode_cursor:
       text: "0xe0def4"
       cursor: "0x524f67"
