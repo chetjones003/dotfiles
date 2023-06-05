@@ -558,7 +558,7 @@ schemes:
 
   RosePine: &RosePine
     primary:
-      background: "0x100C02"
+      background: "0x191724"
       foreground: "0xe0def4"
     cursor:
       text: "0xe0def4"
