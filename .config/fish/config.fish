@@ -2,7 +2,7 @@
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.bin  $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $fish_user_paths
+set -U fish_user_paths $HOME/.bin  $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $fish_user_paths /usr/local/go/bin
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
@@ -16,7 +16,7 @@ set -x MANPAGER "nvim -c 'set ft=man' -"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
-    bind \cy accept-autosuggestion
+    bind -M insert \cy accept-autosuggestion
 
     fish_vi_key_bindings
 end
@@ -26,9 +26,9 @@ end
 alias vim='nvim'
 
 alias nvimconf='cd $HOME/.config/nvim && nvim'
-alias fishconf='cd $HOME/dotfiles/fish/.config/fish/ && nvim'
-alias alacrittyconf='cd $HOME/dotfiles/alacritty/.config/alacritty/ && nvim'
-alias starshipconf='cd $HOME/dotfiles/starship/.config/starship.toml'
+alias fishconf='cd $HOME/dotfiles/.config/fish/ && nvim'
+alias alacrittyconf='cd $HOME/dotfiles/.config/alacritty/ && nvim'
+alias starshipconf='cd $HOME/dotfiles/.config/starship.toml'
 alias dotfiles='cd $HOME/dotfiles'
 
 # Changing "ls" to "exa"
