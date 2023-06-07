@@ -43,5 +43,8 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 
+# helper for nmcli
+alias wificonnect="echo \n'nmcli device wifi list\nnmcli device rescan\nnmcli device connect <ssid> password <password>\nnmcli connection show'"
+
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
