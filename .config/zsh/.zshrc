@@ -46,4 +46,13 @@ alias starshipconf='cd ~/dotfiles/.config/ && nvim starship.toml'
 alias tmuxconf='cd ~/dotfiles/ && nvim .tmux.conf'
 alias dotfiles='cd ~/dotfiles'
 
+# helper for nmcli
+alias wificonnect="echo 'nmcli device wifi list\nnmcli device rescan\nnmcli device connect <ssid> password <password>\nnmcli connection show'"
+
+# helper for brightness
+alias brightness="echo 'xrandr --output LVDS-1 --brightness <value>'"
+
+# helper for audio
+alias audio="echo 'amixer set Master <amount %>'"
+
 eval "$(starship init zsh)"
