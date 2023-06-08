@@ -22,11 +22,11 @@ import qualified Data.Map        as M
 myTerminal            = "alacritty"
 myFocusFollowsMouse  :: Bool
 myFocusFollowsMouse   = True
-myBorderWidth         = 1
+myBorderWidth         = 2
 myModMask             = mod4Mask
 myWorkspaces          = ["1","2","3","4","5","6","7","8","9"]
-myNormalBorderColor   = "#79740e"
-myFocusedBorderColor  = "#98971a"
+myNormalBorderColor   = "#928374"
+myFocusedBorderColor  = "#d65d0e"
 
 ------------------------------------------------------------------------
 ----------                  KEYBINDINGS                       ----------
