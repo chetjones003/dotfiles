@@ -7,6 +7,7 @@ import Data.Monoid
 import Data.List
 import Data.Maybe
 import System.Exit
+import System.IO
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run
@@ -35,6 +36,7 @@ myFocusedBorderColor  = "#d65d0e"
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+    , ((modm,               xK_b     ), spawn "brave-browser")
     , ((modm .|. shiftMask, xK_c     ), kill)
     , ((modm,               xK_space ), sendMessage NextLayout)
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -53,6 +55,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((0                 , 0x1008FF11     ), spawn "amixer set Master 5%-")
+    , ((0                 , 0x1008FF13     ), spawn "amixer set Master 5%+")
+    , ((0                 , 0x1008FF12     ), spawn "amixer set Master toggle")
+    , ((0                 , 0x1008FF03     ), spawn "/home/chetj/.xmonad/bright.sh -")
+    , ((0                 , 0x1008FF02     ), spawn "/home/chetj/.xmonad/bright.sh +")
     ]
     ++
     [((m .|. modm, k), windows $ f i)
