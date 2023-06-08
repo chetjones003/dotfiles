@@ -36,7 +36,7 @@ myFocusedBorderColor  = "#d65d0e"
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
-    , ((modm,               xK_b     ), spawn "brave-browser")
+    , ((modm,               xK_b     ), spawn "firefox")
     , ((modm .|. shiftMask, xK_c     ), kill)
     , ((modm,               xK_space ), sendMessage NextLayout)
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -126,7 +126,6 @@ myEventHook = mempty
 
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
-    spawnOnce "compton &"
 
 main = do
     wsBar <- spawnPipe myWsBar
