@@ -132,4 +132,4 @@ schemes:
 # *DoomOne
 # *GruvboxDark
 # *RosePine
-colors: *GruvboxDark
+colors: *RosePine
