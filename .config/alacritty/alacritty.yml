@@ -1,5 +1,5 @@
 env:
-  TERM: xterm-256color
+  TERM: screen-256color
 
 window:
   padding:
@@ -7,7 +7,7 @@ window:
     y: 6
   dynamic_padding: false
 
-  opacity: 0.9
+  opacity: 1.0
   title: Alacritty
   class:
     instance: Alacritty
@@ -16,21 +16,23 @@ scrolling:
   history: 50000
 font:
   normal:
-    family: Mononoki Nerd Font Mono
+    family: SauceCodePro Nerd Font Mono
     style: Regular
   bold:
-    family: Mononoki Nerd Font Mono
+    family: SauceCodePro Nerd Font Mono
     style: Bold
   italic:
-    family: Mononoki Nerd Font Mono
+    family: SauceCodePro Nerd Font Mono
     style: Italic
   bold_italic:
-    family: Mononoki Nerd Font Mono
+    family: SauceCodePro Nerd Font Mono
     style: Bold Italic
-  size: 10.0
+  size: 16.0
   offset:
     x: 0
     y: 1
+  cursor:
+    shape: block
 draw_bold_text_with_bright_colors: true
 schemes:
   ### Doom One ###
@@ -132,4 +134,4 @@ schemes:
 # *DoomOne
 # *GruvboxDark
 # *RosePine
-colors: *RosePine
+colors: *DoomOne

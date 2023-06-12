@@ -1,3 +1,4 @@
+export TERM="screen-256color"
 HISTFILE=$HOME/.config/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -6,6 +7,7 @@ export TERMINAL="alacritty"
 export BROWSER="firefox"
 export PATH="$HOME/.local/bin":$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.config/emacs/bin:$PATH
 setopt HIST_IGNORE_SPACE
 setopt extended_history
 setopt hist_expire_dups_first

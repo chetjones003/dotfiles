@@ -14,8 +14,8 @@ read_only = " "
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                         
-success_symbol = "[➜](green) "  
-error_symbol = "[➜](red) "  
+success_symbol = "[➜](#3DCF6D) "  
+error_symbol = "[➜](#C04742) "  
 
 # Git
 [git_branch]
@@ -35,7 +35,7 @@ symbol = " ! "
 success_symbol = ""
 not_executable_symbol = " !x "
 not_found_symbol = "notfound"
-format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]](#3DCF6D) '
 map_symbol = true
 disabled = false
 
