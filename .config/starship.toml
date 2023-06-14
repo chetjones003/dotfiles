@@ -3,10 +3,10 @@
 add_newline = false
 
 [line_break]
-disabled = true
+disabled = false
 
 [directory]
-truncation_length = 8
+truncation_length = 1
 truncation_symbol = "../"
 truncate_to_repo = false
 format = '[$path]($style)[$read_only]($read_only_style) '
@@ -19,11 +19,10 @@ error_symbol = "[➜](#C04742) "
 
 # Git
 [git_branch]
-format = 'on [\($symbol$branch(:$remote_branch)\)]($style)'
+format = 'on [\($symbol$branch(:$remote_branch)\)]($style) '
 symbol = "branch:"
 
 [git_status]
-up_to_date = "  "
 ahead = " ->x${count} "
 behind = " <-x${count} "
 staged = " Sx${count} "
