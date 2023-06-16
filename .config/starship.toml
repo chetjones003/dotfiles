@@ -3,7 +3,7 @@
 add_newline = false
 
 [line_break]
-disabled = false
+disabled = true
 
 [directory]
 truncation_length = 1
@@ -36,7 +36,7 @@ not_executable_symbol = " !x "
 not_found_symbol = "notfound"
 format = '[\[$symbol$common_meaning$signal_name$maybe_int\]](#3DCF6D) '
 map_symbol = true
-disabled = false
+disabled = true
 
 [sudo]
 symbol = " "
