@@ -9,3 +9,5 @@
 	editor = nvim
 [pull]
 	rebase = true
+[github]
+	user = chetjones003
