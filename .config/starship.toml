@@ -19,8 +19,7 @@ error_symbol = "[➜](#C04742) "
 
 # Git
 [git_branch]
-format = 'on [\($symbol$branch(:$remote_branch)\)]($style) '
-symbol = "branch:"
+format = '[git:\($branch(:$remote_branch)\)]($style) '
 
 [git_status]
 ahead = " ->x${count} "

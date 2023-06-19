@@ -1,1 +1,0 @@
-("~/dev/rust_algorithms/" "~/.emacs.d/elpa/vterm-20230417.424/" "~/dev/rust_codewars/" "~/dev/rustlings/" "~/dev/monkey-compiler/")

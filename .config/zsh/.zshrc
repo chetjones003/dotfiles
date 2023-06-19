@@ -1,3 +1,4 @@
+neofetch
 export TERM="screen-256color"
 HISTFILE=$HOME/.config/.zsh_history
 HISTSIZE=1000000
