@@ -16,7 +16,7 @@ super + v
 
 #alacritty
 super + Return
-    kitty
+    alacritty
 
 #Xkill
 super + Escape
