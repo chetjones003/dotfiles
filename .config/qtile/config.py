@@ -93,6 +93,27 @@ def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
         if switch_screen == True:
             qtile.cmd_to_screen(i + 1)
 
+catppuccin = {
+        "rosewater": "#f5e0dc",
+        "flamingo": "#f2cdcd",
+        "pink": "#f5c2e7",
+        "mauve": "#cba6f7",
+        "red": "#f38ba8",
+        "maroon": "#eba0ac",
+        "peach": "#fab387",
+        "yellow": "#f9e2af",
+        "green": "#a6e3a1",
+        "teal": "#94e2d5",
+        "sky": "#89dceb",
+        "sapphire": "#74c7ec",
+        "blue": "#89b4fa",
+        "lavender": "#b4befe",
+        "text": "#cdd6f4",
+        "overlay": "#6c7086",
+        "surface": "#313244",
+        "base": "#1e1e2e",
+        "mantle": "#181825",
+        }
 
 groups = []
 
@@ -100,7 +121,7 @@ groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
 
 #group_labels = ["1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "0",]
-group_labels = ["", "", "", "", "", "", "", "", "", "",]
+group_labels = ["", "", "", "", "", "󰸉", "", "", "", "󰙯",]
 #group_labels = ["Dev", "Web", "Term", "Pac",]
 
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall",]
@@ -132,10 +153,10 @@ for i in groups:
 
 
 def init_layout_theme():
-    return {"margin":5,
-            "border_width":2,
-            "border_focus": "#5e81ac",
-            "border_normal": "#4c566a"
+    return {"margin":10,
+            "border_width":3,
+            "border_focus": catppuccin["peach"],
+            "border_normal": catppuccin["lavender"],
             }
 
 layout_theme = init_layout_theme()
@@ -153,27 +174,6 @@ layouts = [
     layout.Max(**layout_theme)
 ]
 
-catppuccin = {
-        "rosewater": "#f5e0dc",
-        "flamingo": "#f2cdcd",
-        "pink": "#f5c2e7",
-        "mauve": "#cba6f7",
-        "red": "#f38ba8",
-        "maroon": "#eba0ac",
-        "peach": "#fab387",
-        "yellow": "#f9e2af",
-        "green": "#a6e3a1",
-        "teal": "#94e2d5",
-        "sky": "#89dceb",
-        "sapphire": "#74c7ec",
-        "blue": "#89b4fa",
-        "lavender": "#b4befe",
-        "text": "#cdd6f4",
-        "overlay": "#6c7086",
-        "surface": "#313244",
-        "base": "#1e1e2e",
-        "mantle": "#181825",
-        }
 # WIDGETS FOR THE BAR
 
 def init_widgets_defaults():
@@ -187,23 +187,27 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
-            widget.Spacer(
-                length = 6,
-                background = catppuccin["mantle"],
-                ),
+            widget.TextBox(
+                "󰣇",
+                font = "SauceCodePro Nerd Font Mono",
+                fontsize = 30,
+                foreground = catppuccin["base"],
+                background = catppuccin["lavender"],
+                padding = 10,
+            ),
             widget.GroupBox(
-                font = "FontAwesome",
-                fontsize = 14,
+                font = "SauceCodePro Nerd Font Mono",
+                fontsize = 25,
                 margin_y = 3,
                 margin_x = 0,
                 borderwidth = 3,
                 disable_drag = True,
-                active = catppuccin["green"],
+                active = catppuccin["lavender"],
                 inactive = catppuccin["overlay"],
                 rounded = True,
                 spacing = None,
                 highlight_method = "line",
-                this_current_screen_border = catppuccin["green"],
+                this_current_screen_border = catppuccin["lavender"],
                 foreground = catppuccin["text"],
                 background = catppuccin["mantle"]
                 ),
