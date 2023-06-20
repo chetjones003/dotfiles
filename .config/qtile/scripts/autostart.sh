@@ -9,6 +9,8 @@ function run {
 
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
+killall xfce4-notifyd
+run dunst &
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &

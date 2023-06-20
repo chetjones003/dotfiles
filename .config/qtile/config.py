@@ -8,6 +8,9 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.command import lazy
 from libqtile.widget import Spacer
 
+from qtile_extras import widget
+from qtile_extras.widget.decorations import BorderDecoration
+
 #mod4 or mod = super key
 mod = "mod4"
 mod1 = "alt"
@@ -150,27 +153,34 @@ layouts = [
     layout.Max(**layout_theme)
 ]
 
-rosepine = {
-        "base": "#191724",
-        "surface": "#1f1d2e",
-        "overlay": "#26233a",
-        "muted": "#6e6a86",
-        "subtle": "#908caa",
-        "text": "#e0def4",
-        "love": "#eb6f92",
-        "gold": "#f6c177",
-        "rose": "#ebbcba",
-        "pine": "#31748f",
-        "foam": "#9ccfd8",
-        "iris": "#c4a7e7",
+catppuccin = {
+        "rosewater": "#f5e0dc",
+        "flamingo": "#f2cdcd",
+        "pink": "#f5c2e7",
+        "mauve": "#cba6f7",
+        "red": "#f38ba8",
+        "maroon": "#eba0ac",
+        "peach": "#fab387",
+        "yellow": "#f9e2af",
+        "green": "#a6e3a1",
+        "teal": "#94e2d5",
+        "sky": "#89dceb",
+        "sapphire": "#74c7ec",
+        "blue": "#89b4fa",
+        "lavender": "#b4befe",
+        "text": "#cdd6f4",
+        "overlay": "#6c7086",
+        "surface": "#313244",
+        "base": "#1e1e2e",
+        "mantle": "#181825",
         }
 # WIDGETS FOR THE BAR
 
 def init_widgets_defaults():
-    return dict(font="Noto Sans",
-                fontsize = 12,
+    return dict(font="Noto Sans Bold",
+                fontsize = 10,
                 padding = 2,
-                background=rosepine["base"])
+                background=catppuccin["mantle"])
 
 widget_defaults = init_widgets_defaults()
 
@@ -178,15 +188,8 @@ def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
             widget.Spacer(
-                length = 5,
-                background = rosepine["base"],
-                ),
-            widget.TextBox(
-                text = "",
-                padding = 0,
-                fontsize = 20,
-                foreground = rosepine["overlay"],
-                background = rosepine["base"],
+                length = 6,
+                background = catppuccin["mantle"],
                 ),
             widget.GroupBox(
                 font = "FontAwesome",
@@ -195,212 +198,128 @@ def init_widgets_list():
                 margin_x = 0,
                 borderwidth = 3,
                 disable_drag = True,
-                active = rosepine["text"],
-                inactive = rosepine["muted"],
+                active = catppuccin["green"],
+                inactive = catppuccin["overlay"],
                 rounded = True,
                 spacing = None,
-                highlight_method = "border",
-                this_current_screen_border = rosepine["pine"],
-                foreground = rosepine["text"],
-                background = rosepine["overlay"]
-                ),
-            widget.TextBox(
-                text = "",
-                padding = 0,
-                fontsize = 20,
-                foreground = rosepine["overlay"],
-                background = rosepine["base"],
+                highlight_method = "line",
+                this_current_screen_border = catppuccin["green"],
+                foreground = catppuccin["text"],
+                background = catppuccin["mantle"]
                 ),
             widget.Sep(
-                linewidth = 0,
-                padding = 5,
-                background = rosepine["base"]
-                ),
-            widget.TextBox(
-                text = "",
-                padding = 0,
-                fontsize = 20,
-                foreground = rosepine["overlay"],
-                background = rosepine["base"],
-                ),
-            widget.CurrentLayout(
-                font = "Noto Sans Bold",
-                foreground = rosepine["text"],
-                background = rosepine["overlay"]
-                ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
+                    linewidth = 0,
+                    padding = 10,
+                    background = catppuccin["mantle"]
+                    ),
+            widget.TaskList(
+                    icon_size = 0,
+                    borderwidth = 1,
+                    border = catppuccin["surface"],
+                    foreground = catppuccin["text"],
+                    background = catppuccin["base"],
+                    margin = 0,
+                    padding = 10,
+                    highlight_method = "block",
+                    title_width_method = "uniform",
+                    urgent_alert_method = "border",
+                    urgent_border = catppuccin["red"],
+                    rounded = False,
+                    txt_floating = "",
+                    txt_maximized = "",
+                    txt_minimized = "",
                     ),
             widget.Sep(
                     linewidth = 0,
-                    padding = 5,
-                    background = rosepine["base"]
-                    ),
-            widget.WindowName(
-                    foreground = rosepine["text"],
-                    background = rosepine["base"],
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
-                    ),
-            widget.TextBox(
-                    font="FontAwesome",
-                    text="  ",
-                    foreground = rosepine["text"],
-                    background = rosepine["overlay"],
-                    padding = 0,
-                    fontsize = 14
+                    padding = 10,
+                    background = catppuccin["mantle"]
                     ),
             widget.Clock(
-                    foreground = rosepine["text"],
-                    background = rosepine["overlay"],
-                    fontsize = 12,
-                    format="%m-%d-%Y %a (%I:%M %p)"
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
+                    foreground = catppuccin["red"],
+                    background = catppuccin["mantle"],
+                    format="%m-%d-%Y %a (%I:%M %p)",
+                    decorations = [
+                        BorderDecoration(
+                            colour = catppuccin["red"],
+                            border_width = [0, 0, 3, 0],
+                            padding_x = 1,
+                            padding_y = None,
+                        )
+                    ],
                     ),
             widget.Sep(
                     linewidth = 0,
-                    padding = 5,
-                    background = rosepine["base"]
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
-                    ),
-            widget.TextBox(
-                    text = "󱒒 ",
-                    padding = 0,
-                    fontsize = 16,
-                    foreground = rosepine["text"],
-                    background = rosepine["overlay"],
+                    padding = 10,
+                    background = catppuccin["mantle"]
                     ),
             widget.Memory(
-                    font="Noto Sans",
                     update_interval = 2,
-                    fontsize = 12,
-                    foreground = rosepine["text"],
-                    background = rosepine["overlay"],
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
+                    foreground = catppuccin["peach"],
+                    background = catppuccin["mantle"],
+                    measure_mem = "G",
+                    format = 'Mem: {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}',
+                    decorations = [
+                        BorderDecoration(
+                            colour = catppuccin["peach"],
+                            border_width = [0, 0, 3, 0],
+                            padding_x = 1,
+                            padding_y = None,
+                        )
+                    ],
                     ),
             widget.Sep(
                     linewidth = 0,
-                    padding = 5,
-                    background = rosepine["base"]
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
-                    ),
-            widget.TextBox(
-                    text = " ",
-                    padding = 0,
-                    fontsize = 16,
-                    foreground = rosepine["text"],
-                    background = rosepine["overlay"],
+                    padding = 10,
+                    background = catppuccin["mantle"]
                     ),
             widget.CPU(
-                    font="Noto Sans",
                     update_interval = 2,
                     format = "CPU: {load_percent}% {freq_current}GHz",
-                    fontsize = 12,
-                    foreground = rosepine["text"],
-                    background = rosepine["overlay"],
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
+                    foreground = catppuccin["green"],
+                    background = catppuccin["mantle"],
+                    decorations = [
+                        BorderDecoration(
+                            colour = catppuccin["green"],
+                            border_width = [0, 0, 3, 0],
+                            padding_x = 1,
+                            padding_y = None,
+                        )
+                    ],
                     ),
             widget.Sep(
                     linewidth = 0,
-                    padding = 5,
-                    background = rosepine["base"]
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
-                    ),
-            widget.TextBox(
-                    text="󱊣 ",
-                    foreground = rosepine["text"],
-                    background = rosepine["overlay"],
-                    padding = 0,
-                    fontsize=16
+                    padding = 10,
+                    background = catppuccin["mantle"]
                     ),
             widget.Battery(
-                    font="Noto Sans",
                     update_interval = 10,
                     format = "{percent:2.0%}",
-                    fontsize = 12,
-                    foreground = rosepine["text"],
-                    background = rosepine["overlay"],
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
+                    padding = 5,
+                    foreground = catppuccin["sapphire"],
+                    background = catppuccin["mantle"],
+                    decorations = [
+                        BorderDecoration(
+                            colour = catppuccin["sapphire"],
+                            border_width = [0, 0, 3, 0],
+                            padding_x = 1,
+                            padding_y = None,
+                        )
+                    ],
                     ),
             widget.Sep(
                     linewidth = 0,
-                    padding = 5,
-                    background = rosepine["base"]
-                    ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
+                    padding = 10,
+                    background = catppuccin["mantle"]
                     ),
             widget.Systray(
-                    background = rosepine["overlay"],
+                    background = catppuccin["mantle"],
                     icon_size=20,
                     padding = 3
                     ),
-            widget.TextBox(
-                    text = "",
-                    padding = 0,
-                    fontsize = 20,
-                    foreground = rosepine["overlay"],
-                    background = rosepine["base"],
-                    ),
             widget.Sep(
                     linewidth = 0,
                     padding = 5,
-                    background = rosepine["base"]
+                    background = catppuccin["mantle"]
                     ),
             ]
     return widgets_list
@@ -412,17 +331,11 @@ def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1
 
-def init_widgets_screen2():
-    widgets_screen2 = init_widgets_list()
-    return widgets_screen2
-
 widgets_screen1 = init_widgets_screen1()
-widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=0.8))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8))]
 screens = init_screens()
 
 

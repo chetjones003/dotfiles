@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 MON="LVDS-1"    # Discover monitor name with: xrandr | grep " connected"
 STEP=5          # Step Up/Down brightnes by: 5 = ".05", 10 = ".10", etc.
@@ -28,10 +28,19 @@ else
     CurrBright=".${MathBright:0:2}"
 fi
 
-xrandr --output "$MON" --brightness "$CurrBright"   # Set new brightness
 
 # Display current brightness
 printf "Monitor $MON "
-echo $( xrandr --verbose --current | grep ^"$MON" -A5 | tail -n1 )
-brightness=$(echo $( xrandr --verbose --current | grep ^"$MON" -A5 | tail -n1 ))
-dunstify -a "changebrightness" -u low -r 9991 -h "$brightness" -i "brightness-$1" "$brightness%" -t 2000
+
+send_notification() {
+    dunstify -a "changebrightness" -u low -r 9991 -h int:value:"$CurrBright" -i "brightness-$1" "Brightness: $brightness%" -t 2000
+}
+
+case $1 in
+    up)
+        xrandr --output "$MON" --brightness "$CurrBright"   # Set new brightness
+        ;;
+    down)
+        xrandr --output "$MON" --brightness "$CurrBright"   # Set new brightness
+        ;;
+esac
