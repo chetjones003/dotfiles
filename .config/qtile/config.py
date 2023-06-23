@@ -183,11 +183,16 @@ def init_widgets_list():
             widget.TextBox(
                 "󰣇",
                 font = "SauceCodePro Nerd Font Mono",
-                fontsize = 30,
+                fontsize = 34,
                 foreground = catppuccin["base"],
-                background = catppuccin["lavender"],
-                padding = 10,
+                background = catppuccin["red"],
+                padding = 5,
             ),
+            widget.Sep(
+                    linewidth = 0,
+                    padding = 10,
+                    background = catppuccin["mantle"]
+                    ),
             widget.GroupBox(
                 font = "SauceCodePro Nerd Font Mono",
                 fontsize = 25,
@@ -238,7 +243,7 @@ def init_widgets_list():
                     decorations = [
                         BorderDecoration(
                             colour = catppuccin["red"],
-                            border_width = [0, 0, 3, 0],
+                            border_width = [1, 0, 3, 0],
                             padding_x = 1,
                             padding_y = None,
                         )
@@ -258,7 +263,7 @@ def init_widgets_list():
                     decorations = [
                         BorderDecoration(
                             colour = catppuccin["peach"],
-                            border_width = [0, 0, 3, 0],
+                            border_width = [1, 0, 3, 0],
                             padding_x = 1,
                             padding_y = None,
                         )
@@ -277,7 +282,7 @@ def init_widgets_list():
                     decorations = [
                         BorderDecoration(
                             colour = catppuccin["green"],
-                            border_width = [0, 0, 3, 0],
+                            border_width = [1, 0, 3, 0],
                             padding_x = 1,
                             padding_y = None,
                         )
@@ -297,7 +302,7 @@ def init_widgets_list():
                     decorations = [
                         BorderDecoration(
                             colour = catppuccin["sapphire"],
-                            border_width = [0, 0, 3, 0],
+                            border_width = [1, 0, 3, 0],
                             padding_x = 1,
                             padding_y = None,
                         )
