@@ -87,10 +87,12 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# Changing "ls" to "exa"
+alias ls="exa -al --color=always --group-directories-first" # my preferred listing
+alias la="exa -a --color=always --group-directories-first"  # all files and dirs
+alias ll="exa -l --color=always --group-directories-first"  # long format
+alias lt="exa -aT --color=always --group-directories-first" # tree listing
+alias l.="exa -a | egrep '^\.'"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -115,4 +117,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
 . "$HOME/.cargo/env"
+
+eval "$(starship init bash)"
