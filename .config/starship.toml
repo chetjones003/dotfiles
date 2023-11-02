@@ -5,17 +5,20 @@ add_newline = false
 [line_break]
 disabled = true
 
+[cmd_duration]
+disabled = true
+
 [directory]
-truncation_length = 1
+truncation_length = 5
 truncation_symbol = "../"
 truncate_to_repo = false
 format = '[$path]($style)[$read_only]($read_only_style) '
-read_only = " "
+read_only = " 🔒"
 
 # Replace the "❯" symbol in the prompt with "➜"
-[character]                         
-success_symbol = "[➜](#3DCF6D) "  
-error_symbol = "[➜](#C04742) "  
+[character]
+success_symbol = "[→](#3DCF6D) "
+error_symbol = "[→](#C04742) "
 
 # Git
 [git_branch]
@@ -24,37 +27,16 @@ format = '[git:\($branch(:$remote_branch)\)]($style) '
 [git_status]
 ahead = " ->x${count} "
 behind = " <-x${count} "
-staged = " Sx${count} "
-modified = " Mx${count} "
-untracked = " Ux${count} "
-
-[status]
-symbol = " ! "
-success_symbol = ""
-not_executable_symbol = " !x "
-not_found_symbol = "notfound"
-format = '[\[$symbol$common_meaning$signal_name$maybe_int\]](#3DCF6D) '
-map_symbol = true
-disabled = true
-
-[sudo]
-symbol = " "
-disabled = false
+staged = " Stg:${count} "
+modified = " Mod:${count} "
+untracked = " Un:${count} "
+deleted = "Del:${count}"
 
 [package]
-disabled = true
-
-[rust]
-disabled = true
-
-[python]
-disabled = true
-
-[c]
 disabled = true
 
 [lua]
 disabled = true
 
-[golang]
-disabled = true
+[nodejs]
+format = 'via [node $version](bold green) '
