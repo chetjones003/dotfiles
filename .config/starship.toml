@@ -12,7 +12,7 @@ disabled = true
 truncation_length = 5
 truncation_symbol = "../"
 truncate_to_repo = false
-format = '[$path]($style)[$read_only]($read_only_style) '
+format = '󰍘 [$path]($style)[$read_only]($read_only_style) '
 read_only = " 🔒"
 
 # Replace the "❯" symbol in the prompt with "➜"
@@ -22,21 +22,21 @@ error_symbol = "[→](#C04742) "
 
 # Git
 [git_branch]
-format = '[git:\($branch(:$remote_branch)\)]($style) '
+format = 'git:\($branch(:$remote_branch)\)($style) '
 
 [git_status]
-ahead = " ->x${count} "
-behind = " <-x${count} "
-staged = " Stg:${count} "
-modified = " Mod:${count} "
-untracked = " Un:${count} "
-deleted = "Del:${count}"
+ahead = " ${count} "
+behind = " ${count} "
+staged = " ${count} "
+modified = " ${count} "
+untracked = " ${count} "
+deleted = " 󰗨${count}"
 
 [package]
 disabled = true
 
 [lua]
-disabled = true
+disabled = false
 
 [nodejs]
 format = 'via [node $version](bold green) '
