@@ -29,5 +29,6 @@ fi
 
 export PATH=$PATH:/usr/local/go/bin
 
+xset r rate 200 30
 
 xmodmap ~/.xmodmap
