@@ -22,7 +22,7 @@ error_symbol = "[→](#C04742) "
 
 # Git
 [git_branch]
-format = '[$symbol$branch(:$remote_branch)](bold #ff9e64) '
+format = '[$symbol$branch(:$remote_branch)](bold #31748f) '
 symbol = " "
 
 [git_status]
@@ -32,7 +32,7 @@ staged = " ${count} "
 modified = " ${count} "
 untracked = " ${count} "
 deleted = " 󰗨${count}"
-style = "bold #f7768e"
+style = "bold #c4a7e7"
 
 [package]
 disabled = true
@@ -40,7 +40,7 @@ disabled = true
 [lua]
 disabled = true
 
-[go]
+[golang]
 disabled = true
 
 [nodejs]
