@@ -1,5 +1,5 @@
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.config/emacs/bin/ $HOME/.bin $HOME/.cargo/bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $fish_user_paths
+set -U fish_user_paths /usr/local/go/bin $HOME/.config/emacs/bin/ $HOME/.bin $HOME/.cargo/bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $fish_user_paths
 
 ### EXPORT ###
 set fish_greeting         # Supresses fish's intro message
