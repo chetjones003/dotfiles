@@ -19,17 +19,17 @@ end
 
 bind -M insert \cy accept-autosuggestion
 
-# TokyoNight Color Palette
-set -l foreground c0caf5
-set -l selection 2e3c64
-set -l comment 565f89
-set -l red f7768e
-set -l orange ff9e64
-set -l yellow e0af68
-set -l green 9ece6a
-set -l purple 9d7cd8
-set -l cyan 7dcfff
-set -l pink bb9af7
+# Onedark Color Palette
+set -l foreground abb2bf
+set -l selection 848b98
+set -l comment 5c6370
+set -l red e86671
+set -l orange d19a66
+set -l yellow e5c07b
+set -l green 98c379
+set -l purple c678dd
+set -l cyan 56b6c2
+set -l pink c678dd
 
 # Syntax Highlighting Colors
 set -g fish_color_normal $foreground
